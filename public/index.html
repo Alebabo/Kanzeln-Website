@@ -3,54 +3,652 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light dark">
-<meta name="robots" content="noindex">
-<title>Coming Soon</title>
+<meta name="theme-color" content="#f5efe8">
+<meta name="format-detection" content="telephone=no">
+<title>Kanzen Signature Beauty – Laser-Haarentfernung & Hautbehandlungen in Frankfurt</title>
+<meta name="description" content="Kanzen Signature Beauty by Aylin Kaiser in Frankfurt. Persönliche Beratung, dauerhafte Haarentfernung und ausgewählte Hautbehandlungen in ruhiger Studioatmosphäre.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
-:root { color-scheme: light dark; }
-html, body { height: 100%; margin: 0; }
-body { display: flex; align-items: center; justify-content: center; background: Canvas; color: CanvasText;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding: 16px; box-sizing: border-box; }
-main { display: grid; justify-items: center; gap: 24px; width: 100%; max-width: 360px; }
-h1 { margin: 0; font-size: clamp(2rem, 8vw, 5rem); font-weight: 600; letter-spacing: -0.02em; text-align: center;
-  cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; white-space: nowrap; }
-form { display: none; width: 100%; gap: 8px; }
-form.open { display: flex; }
-input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 12px 14px; border-radius: 10px;
-  border: 1px solid color-mix(in srgb, CanvasText 25%, transparent); background: Canvas; color: CanvasText; }
-button { font: inherit; font-size: 16px; padding: 12px 16px; border-radius: 10px; border: 0; cursor: pointer;
-  background: CanvasText; color: Canvas; }
-form.bad { animation: shake .35s; }
-form.bad input { border-color: #d33; }
-@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+:root {
+  --paper:#f5efe8; --paper-2:#eee3d9; --ink:#302723; --muted:#76645b;
+  --clay:#a96750; --clay-dark:#87513f; --line:#d9c9bd; --white:#fffaf5;
+  --olive:#77735d; --serif:"Playfair Display", Georgia, serif; --sans:"Manrope",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}a{color:inherit;text-decoration:none}button{font:inherit}
+.wrap{width:min(1240px,calc(100% - 64px));margin-inline:auto}
+.eyebrow{font:600 .68rem/1.5 "DM Sans",sans-serif;letter-spacing:.19em;text-transform:uppercase;color:var(--clay-dark)}
+h1,h2,h3,p{margin-top:0}
+h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.035em;line-height:1.05}
+h1{font-size:clamp(3.2rem,5.5vw,5.4rem);max-width:11ch;margin-bottom:24px}
+h2{font-size:clamp(2.4rem,4.2vw,4rem);margin-bottom:18px}
+h3{font:500 1.08rem/1.35 var(--sans)}
+p{color:var(--muted)}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:12px;min-height:50px;padding:0 24px;background:var(--clay);color:white;border:1px solid var(--clay);border-radius:2px;font:600 .78rem "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:background .2s,border-color .2s,transform .2s}
+.btn:hover{background:var(--clay-dark);border-color:var(--clay-dark);transform:translateY(-1px)}
+.btn--outline{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn--outline:hover{color:white}
+.topline{height:28px;background:var(--ink);color:#f6eee6;display:flex;align-items:center;justify-content:center;font:500 .61rem "DM Sans",sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.header{position:sticky;top:0;z-index:40;background:rgba(245,239,232,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.header__inner{height:82px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo strong{font:400 2.05rem/1 var(--serif);letter-spacing:-.045em}
+.logo span{margin-top:7px;font:500 .59rem "DM Sans",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:36px}
+.nav a{font:500 .76rem "DM Sans",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#594941;position:relative;padding:8px 0}
+.nav a:after{content:"";position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--clay);transition:width .2s}
+.nav a:hover:after{width:100%}
+.header__cta{min-height:44px;padding-inline:18px}
+.burger{display:none;width:44px;height:44px;border:0;background:none;color:var(--ink);cursor:pointer}
+.burger span{display:block;width:23px;height:1px;background:currentColor;margin:6px auto;transition:transform .2s}
+.rating-band{min-height:56px;border-bottom:1px solid var(--line);background:#eee3d9;display:flex;align-items:center}
+.rating-band__inner{display:flex;align-items:center;justify-content:center;gap:17px;text-align:center;font-size:.76rem;letter-spacing:.02em}
+.rating-stars{color:#a46a37;font-size:1rem;letter-spacing:.13em;white-space:nowrap}
+.rating-score{font:600 .82rem "DM Sans",sans-serif;letter-spacing:.03em}
+.rating-copy{color:#65544b}
+.rating-divider{height:19px;width:1px;background:#cbb7a9}
+.hero{display:grid;grid-template-columns:.95fr 1.05fr;min-height:680px}
+.hero__copy{padding:clamp(58px,8vw,112px) clamp(32px,7vw,112px) 72px max(32px,calc((100vw - 1240px)/2));display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.hero__copy .eyebrow{margin-bottom:24px}
+.hero__copy p:not(.eyebrow){max-width:440px;font-size:1.02rem;line-height:1.85;margin:0 0 30px}
+.hero__actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.text-link{font:600 .7rem "DM Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--clay);padding:8px 0}
+.hero__image{min-height:680px;position:relative;background-color:#c7a18e;background-image:linear-gradient(180deg,transparent 62%,rgba(32,25,21,.38)),url('/assets/kanzen-gallery.webp');background-size:cover,100% 300%;background-position:center,center 50%}
+.hero__stamp{position:absolute;right:28px;top:28px;width:112px;height:112px;border:1px solid rgba(255,250,245,.8);border-radius:50%;display:grid;place-content:center;text-align:center;color:#fffaf5;font:500 .58rem/1.5 "DM Sans",sans-serif;letter-spacing:.15em;text-transform:uppercase}
+.hero__caption{position:absolute;left:32px;bottom:30px;color:white;font:400 1.28rem var(--serif);letter-spacing:.04em}
+.rating-inline{margin-top:35px;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.68rem}
+.rating-inline b{color:var(--ink);font-weight:600}
+.rating-inline .mini-stars{color:#a46a37;letter-spacing:.08em}
+.marquee{overflow:hidden;background:var(--clay);color:white;padding:18px 0}
+.marquee__track{width:max-content;display:flex;animation:marquee 32s linear infinite}
+.marquee__group{display:flex;align-items:center;flex:none}
+.marquee__item{padding:0 32px;font:400 1rem var(--serif);white-space:nowrap;letter-spacing:.04em}
+.marquee__item:after{content:"✳";margin-left:64px;font:400 .72rem "DM Sans",sans-serif;color:#e8cfc1}
+.marquee:hover .marquee__track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.section{padding:112px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:48px}
+.section-head p{max-width:370px;margin:0 0 6px;font-size:.9rem}
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.service{min-width:0}
+.photo{background-image:url('/assets/kanzen-gallery.webp');background-size:100% 300%;background-repeat:no-repeat;background-color:#c49a84;overflow:hidden}
+.photo--detail{background-position:center 6%}
+.photo--room{background-position:center 50%}
+.photo--laser{background-position:center 94%}
+.service__photo{aspect-ratio:4/4.7;position:relative;transition:filter .3s}
+.service:hover .service__photo{filter:saturate(1.08)}
+.service__number{position:absolute;left:16px;top:16px;color:white;font:500 .65rem "DM Sans",sans-serif;letter-spacing:.1em;text-shadow:0 1px 8px #0006}
+.service__body{padding:20px 0 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start;min-height:168px}
+.service__body p{font-size:.82rem;line-height:1.7;margin-bottom:16px}
+.service__link{margin-top:auto;padding:0 0 16px;font:600 .67rem "DM Sans",sans-serif;letter-spacing:.13em;text-transform:uppercase;color:var(--clay-dark)}
+.service__link span{padding-left:8px}
+.about{display:grid;grid-template-columns:1fr 1fr;background:var(--paper-2)}
+.about__image{min-height:650px}
+.about__copy{padding:clamp(48px,7vw,104px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.about__copy h2{max-width:10ch}
+.about__copy p{max-width:450px;font-size:.94rem;line-height:1.9}
+.signature{margin-top:24px;font:italic 1.7rem var(--serif);color:var(--clay-dark)}
+.studio{display:grid;grid-template-columns:.8fr 1.2fr;gap:7vw;align-items:center}
+.studio__copy p{max-width:390px;line-height:1.9}
+.studio__image{aspect-ratio:1.45}
+.studio__note{font:400 .72rem "DM Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.values{background:var(--ink);color:var(--white)}
+.values .eyebrow{color:#d1a18b}
+.values h2{color:var(--white);max-width:13ch}
+.values__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:58px}
+.value{border-top:1px solid #77645a;padding-top:20px}
+.value__no{font:500 .65rem "DM Sans",sans-serif;color:#d1a18b;letter-spacing:.12em}
+.value h3{font:400 1.4rem var(--serif);margin:12px 0}
+.value p{font-size:.82rem;line-height:1.8;color:#d4c7bf;margin:0;max-width:290px}
+.faq{display:grid;grid-template-columns:.75fr 1.25fr;gap:9vw}
+.faq__intro p{max-width:280px}
+.faq-list{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;font:400 1.12rem var(--serif)}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font:300 1.3rem var(--sans);color:var(--clay)}
+details[open] summary:after{content:"−"}
+details p{max-width:590px;margin:14px 30px 0 0;font-size:.84rem;line-height:1.8}
+.contact{background:#e9d9cc;padding:88px 0}
+.contact__inner{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.contact h2{max-width:12ch;margin:0}
+.contact p{max-width:340px;margin:0}
+.contact__actions{display:flex;gap:12px;flex-wrap:wrap}
+.footer{padding:34px 0;background:var(--paper);font-size:.72rem;color:var(--muted)}
+.footer__inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer__brand{font:400 1.5rem var(--serif);color:var(--ink)}
+.footer__links{display:flex;gap:22px}
+.mobile-bar{display:none}
+:focus-visible{outline:2px solid var(--clay);outline-offset:4px}
+@media(max-width:1050px){
+ .wrap{width:min(100% - 44px,1240px)}
+ .nav{gap:20px}
+ .hero__copy{padding-left:32px}
+ .services{grid-template-columns:repeat(2,1fr);row-gap:36px}
+ .service__photo{aspect-ratio:1.1}
+}
+@media(max-width:760px){
+ html{scroll-padding-top:78px}
+ .wrap{width:calc(100% - 40px)}
+ .topline{height:24px;font-size:.54rem;letter-spacing:.14em}
+ .header__inner{height:68px}
+ .logo strong{font-size:1.8rem}
+ .logo span{font-size:.52rem;letter-spacing:.15em}
+ .header__cta{display:none}
+ .burger{display:block}
+ .nav{position:absolute;left:0;right:0;top:68px;display:flex;align-items:stretch;flex-direction:column;gap:0;padding:0 20px;background:var(--paper);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .28s ease}
+ .nav.open{max-height:300px}
+ .nav a{padding:16px 0;border-bottom:1px solid var(--line);font-size:.68rem}
+ .burger.open span:first-child{transform:translateY(7px) rotate(45deg)}
+ .burger.open span:nth-child(2){opacity:0}
+ .burger.open span:last-child{transform:translateY(-7px) rotate(-45deg)}
+ .rating-band{min-height:48px}
+ .rating-band__inner{gap:8px;font-size:.65rem;flex-wrap:wrap;padding:9px 0}
+ .rating-stars{font-size:.82rem}
+ .rating-divider{height:15px}
+ .hero{display:flex;flex-direction:column;min-height:0}
+ .hero__copy{padding:48px 24px 38px;order:0}
+ .hero__copy .eyebrow{margin-bottom:16px;font-size:.61rem}
+ h1{font-size:clamp(2.65rem,11vw,3.45rem);max-width:12ch;margin-bottom:18px;line-height:1.04}
+ .hero__copy p:not(.eyebrow){font-size:.9rem;line-height:1.8;margin-bottom:22px}
+ .hero__actions{gap:16px}
+ .btn{min-height:48px;padding:0 18px;font-size:.68rem}
+ .text-link{font-size:.62rem}
+ .hero__image{order:1;min-height:clamp(280px,76vw,420px);background-size:cover,100% 300%;background-position:center,center 50%}
+ .hero__stamp{width:84px;height:84px;right:18px;top:18px;font-size:.49rem}
+ .hero__caption{left:20px;bottom:20px;font-size:1.1rem}
+ .rating-inline{margin-top:22px;font-size:.62rem}
+ .marquee{padding:14px 0}
+ .marquee__item{font-size:.9rem;padding:0 18px}
+ .marquee__item:after{margin-left:36px}
+ .section{padding:72px 0}
+ .section-head{display:block;margin-bottom:30px}
+ h2{font-size:2.55rem}
+ .section-head p{font-size:.82rem;margin-top:14px}
+ .services{grid-template-columns:1fr 1fr;gap:28px 14px}
+ .service__photo{aspect-ratio:4/4.8}
+ .service__body{min-height:174px;padding-top:14px}
+ .service__body h3{font-size:.91rem;line-height:1.25}
+ .service__body p{font-size:.73rem;line-height:1.65}
+ .service__link{font-size:.59rem}
+ .about{grid-template-columns:1fr}
+ .about__image{order:0;min-height:0;aspect-ratio:4/3}
+ .about__copy{padding:54px 24px 60px}
+ .about__copy h2{font-size:2.7rem}
+ .about__copy p{font-size:.85rem}
+ .studio{grid-template-columns:1fr;gap:28px}
+ .studio__image{aspect-ratio:1.2}
+ .studio__copy p{font-size:.86rem}
+ .values__grid{grid-template-columns:1fr;gap:28px;margin-top:35px}
+ .value{padding-top:15px}
+ .value h3{font-size:1.25rem;margin:8px 0}
+ .value p{font-size:.79rem}
+ .faq{grid-template-columns:1fr;gap:22px}
+ .faq__intro p{font-size:.84rem}
+ summary{font-size:1.02rem}
+ details{padding:17px 0}
+ .contact{padding:62px 0}
+ .contact__inner{display:grid;grid-template-columns:1fr;gap:18px}
+ .contact h2{font-size:2.55rem}
+ .contact p{font-size:.84rem}
+ .footer{padding-bottom:100px}
+ .footer__inner{align-items:flex-start;flex-direction:column;gap:14px}
+ .mobile-bar{position:fixed;bottom:0;left:0;right:0;z-index:50;display:grid;grid-template-columns:.85fr 1.15fr;gap:9px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(245,239,232,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+ .mobile-bar .btn{width:100%;min-height:48px;padding-inline:8px;font-size:.62rem}
+ body{padding-bottom:calc(72px + env(safe-area-inset-bottom))}
+}
+@media(max-width:380px){
+ .wrap{width:calc(100% - 32px)}
+ .hero__copy{padding-inline:20px}
+ .rating-band__inner{font-size:.59rem}
+ .rating-stars{letter-spacing:.07em}
+ .services{gap:24px 10px}
+ .service__body h3{font-size:.85rem}
+ .service__body p{font-size:.69rem}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+.values__inner{display:grid;grid-template-columns:.72fr 1.28fr;gap:7vw;align-items:center}
+.values__intro h2{color:var(--white);max-width:9ch;margin:0 0 20px}
+.values__intro p{max-width:270px;color:#d4c7bf;font-size:.88rem;line-height:1.8}
+.values-showcase{display:grid;grid-template-columns:.9fr 1.1fr;min-height:340px;background:#30251f;border:1px solid #665348}
+.values-showcase__visual{padding:28px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#745443,#3c2d26);min-height:340px}
+.values-showcase__index{font:500 .65rem "DM Sans",sans-serif;letter-spacing:.16em;color:#e5d0c1}
+.values-showcase__word{font:400 clamp(2.5rem,4.8vw,5rem)/.95 var(--serif);color:#f8f0e9;letter-spacing:-.04em;overflow-wrap:anywhere}
+.values-showcase__content{padding:clamp(26px,4vw,54px);display:flex;flex-direction:column;justify-content:center}
+.values-showcase__content h3{font:400 clamp(1.5rem,2.4vw,2.35rem)/1.12 var(--serif);color:var(--white);margin:0 0 18px}
+.values-showcase__content p{font-size:.88rem;line-height:1.85;color:#d4c7bf;max-width:340px;min-height:6.5em;margin:0}
+.values-showcase__controls{margin-top:34px}
+.values-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.value-tab{border:1px solid #79675d;background:transparent;color:#e8dcd4;padding:10px 13px;font:500 .63rem "DM Sans",sans-serif;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.value-tab.is-active{background:#ead9cc;color:#2b211c;border-color:#ead9cc}
+.values-progress{height:2px;background:#665348;margin-top:22px;overflow:hidden}
+.values-progress span{display:block;width:0;height:100%;background:#e6c8b4}
+@media(max-width:760px){.values__inner{grid-template-columns:1fr;gap:28px}.values__intro h2{max-width:12ch}.values__intro p{margin-bottom:0}.values-showcase{grid-template-columns:1fr;min-height:0}.values-showcase__visual{min-height:190px;padding:20px}.values-showcase__word{font-size:3.4rem}.values-showcase__content{padding:26px 22px 24px}.values-showcase__content p{min-height:0}.values-showcase__controls{margin-top:26px}.values-tabs{gap:6px}.value-tab{padding:10px 11px}}
+@media(prefers-reduced-motion:reduce){.value-tab{transition:none}}
+
+/* Liquid Glass – warm, translucent surfaces across the full experience */
+:root{
+  --glass:rgba(255,250,245,.48);
+  --glass-strong:rgba(255,250,245,.68);
+  --glass-line:rgba(255,255,255,.72);
+  --glass-shadow:0 18px 55px rgba(74,49,37,.09),inset 0 1px 0 rgba(255,255,255,.78);
+}
+body{
+  background:
+    radial-gradient(ellipse at 8% 12%,rgba(255,255,255,.72),transparent 34rem),
+    radial-gradient(ellipse at 92% 38%,rgba(201,157,132,.16),transparent 38rem),
+    radial-gradient(ellipse at 45% 85%,rgba(255,255,255,.5),transparent 32rem),
+    var(--paper);
+  background-attachment:fixed;
+}
+.header{
+  background:rgba(248,242,235,.62);
+  -webkit-backdrop-filter:blur(24px) saturate(165%);
+  backdrop-filter:blur(24px) saturate(165%);
+  border-bottom:1px solid rgba(255,255,255,.7);
+  box-shadow:0 8px 30px rgba(74,49,37,.045);
+}
+.topline{background:rgba(48,39,35,.88);backdrop-filter:blur(18px)}
+.rating-band{
+  background:rgba(238,227,217,.48);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
+  border-bottom:1px solid var(--glass-line);
+}
+.hero__copy{position:relative}
+.hero__copy:before{
+  content:"";position:absolute;inset:7% 4% 7% 0;z-index:-1;
+  background:linear-gradient(135deg,rgba(255,255,255,.38),rgba(255,255,255,.08));
+  border:1px solid rgba(255,255,255,.55);border-radius:34px;
+  box-shadow:var(--glass-shadow);backdrop-filter:blur(18px);
+}
+.hero__image{isolation:isolate}
+.hero__image:after{
+  content:"";position:absolute;inset:18px;border:1px solid rgba(255,255,255,.32);
+  border-radius:28px;pointer-events:none;
+}
+.hero__stamp{
+  background:rgba(255,250,245,.13);
+  border-color:rgba(255,255,255,.68);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 8px 24px #24171022;
+}
+.btn{
+  background:linear-gradient(135deg,rgba(169,103,80,.88),rgba(135,81,63,.82));
+  border-color:rgba(255,255,255,.45);
+  box-shadow:0 8px 24px rgba(135,81,63,.16),inset 0 1px 0 rgba(255,255,255,.35);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+}
+.btn--outline{
+  background:rgba(255,250,245,.34);
+  border:1px solid rgba(255,255,255,.8);
+  box-shadow:var(--glass-shadow);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+}
+.text-link{border-bottom-color:rgba(169,103,80,.55)}
+.marquee{background:rgba(169,103,80,.84);backdrop-filter:blur(18px)}
+.service{padding:10px 10px 0;border:1px solid rgba(255,255,255,.72);border-radius:20px;
+  background:linear-gradient(145deg,rgba(255,255,255,.56),rgba(255,250,245,.2));
+  box-shadow:var(--glass-shadow);overflow:hidden;
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.service:hover{transform:translateY(-5px);border-color:white;box-shadow:0 24px 60px rgba(74,49,37,.14),inset 0 1px 0 white}
+.service__photo{border-radius:13px;overflow:hidden}
+.service__body{padding:18px 10px 0;border:0}
+.service__link{padding:0 0 16px}
+.about{background:rgba(238,227,217,.42)}
+.about__image{position:relative}
+.about__copy{background:rgba(255,250,245,.42);-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px)}
+.studio{position:relative}
+.studio__image,.about__image{overflow:hidden}
+.studio__copy,.faq__intro{
+  background:rgba(255,250,245,.4);border:1px solid rgba(255,255,255,.65);
+  border-radius:26px;padding:clamp(28px,4vw,52px);
+  box-shadow:var(--glass-shadow);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+}
+.values{background:linear-gradient(135deg,rgba(48,37,31,.94),rgba(76,54,44,.88))}
+.values-showcase{
+  background:rgba(255,250,245,.09);border:1px solid rgba(255,255,255,.28);
+  border-radius:26px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(24px) saturate(145%);backdrop-filter:blur(24px) saturate(145%);
+}
+.values-showcase__visual{background:linear-gradient(145deg,rgba(190,143,117,.62),rgba(60,45,38,.62))}
+.values-showcase__content{background:rgba(255,250,245,.055)}
+.value-tab{
+  border-color:rgba(255,255,255,.3);border-radius:999px;
+  background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)
+}
+.value-tab.is-active{background:rgba(255,250,245,.88);border-color:white;box-shadow:0 5px 18px #0002}
+.faq{align-items:start}
+details{
+  padding:22px 24px;margin-bottom:12px;border:1px solid rgba(255,255,255,.76);
+  border-radius:18px;background:rgba(255,250,245,.48);
+  box-shadow:0 10px 30px rgba(74,49,37,.055),inset 0 1px 0 white;
+  -webkit-backdrop-filter:blur(18px) saturate(145%);backdrop-filter:blur(18px) saturate(145%);
+  transition:background .25s,border-color .25s,transform .25s
+}
+details[open]{background:rgba(255,250,245,.72);border-color:white}
+summary:after{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;
+  background:rgba(169,103,80,.1);border:1px solid rgba(169,103,80,.16)}
+.contact{background:rgba(233,217,204,.52);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.footer{background:rgba(245,239,232,.58);border-top:1px solid rgba(255,255,255,.72)}
+.mobile-bar{
+  background:rgba(248,242,235,.66)!important;
+  -webkit-backdrop-filter:blur(26px) saturate(170%)!important;
+  backdrop-filter:blur(26px) saturate(170%)!important;
+  border-top:1px solid rgba(255,255,255,.8)!important;
+  box-shadow:0 -10px 35px rgba(74,49,37,.08)
+}
+.nav.open{
+  background:rgba(248,242,235,.82);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px)
+}
+::selection{background:rgba(169,103,80,.22);color:var(--ink)}
+@media(max-width:760px){
+  body{background-attachment:scroll}
+  .hero__copy:before{inset:8px 12px 8px;border-radius:24px}
+  .hero__image:after{inset:12px;border-radius:20px}
+  .service{padding:7px 7px 0;border-radius:16px}
+  .service__photo{border-radius:11px}
+  .studio__copy,.faq__intro{padding:26px 22px;border-radius:20px}
+  details{padding:17px 18px;border-radius:15px}
+  .values-showcase{border-radius:20px}
+}
+@media(prefers-reduced-transparency:reduce){
+  .header,.rating-band,.hero__copy:before,.about__copy,.studio__copy,.faq__intro,
+  details,.contact,.footer,.mobile-bar,.nav.open,.values-showcase,.value-tab{
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important
+  }
+  .header{background:var(--paper)}.rating-band{background:var(--paper-2)}
+  details,.studio__copy,.faq__intro{background:var(--white)}
+}
+
+
+/* Hero header + rating pill: floating Liquid Glass */
+.topline{display:none}
+.header{
+  position:absolute;top:24px;left:50%;transform:translateX(-50%);
+  width:min(1320px,calc(100% - 64px));z-index:60;
+  border:1px solid rgba(255,255,255,.62);border-radius:999px;
+  background:linear-gradient(120deg,rgba(255,255,255,.42),rgba(255,250,245,.18) 48%,rgba(255,255,255,.34));
+  box-shadow:0 16px 48px rgba(44,31,24,.13),inset 0 1px 0 rgba(255,255,255,.8),inset 0 -1px 0 rgba(255,255,255,.2);
+  -webkit-backdrop-filter:blur(30px) saturate(180%);backdrop-filter:blur(30px) saturate(180%);
+}
+.header__inner{height:76px;padding:0 24px}
+.logo strong,.logo span{color:#fffaf5;text-shadow:0 2px 14px rgba(40,25,18,.35)}
+.nav a{color:#fffaf5;text-shadow:0 1px 10px rgba(40,25,18,.28)}
+.nav a:after{background:#fffaf5}
+.header__cta{background:rgba(255,250,245,.22);border:1px solid rgba(255,255,255,.65);color:white;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 8px 22px rgba(40,25,18,.12)}
+.header__cta:hover{background:rgba(255,250,245,.38)}
+.burger{border-radius:50%;background:rgba(255,255,255,.17);border:1px solid rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.burger span{background:#fffaf5}
+.rating-band{
+  position:absolute;z-index:20;top:132px;left:50%;transform:translateX(-50%);
+  width:max-content;max-width:calc(100% - 36px);min-height:48px;padding:0 22px;
+  border:1px solid rgba(255,255,255,.66);border-radius:999px;
+  background:linear-gradient(120deg,rgba(255,255,255,.38),rgba(255,250,245,.16));
+  box-shadow:0 12px 34px rgba(40,25,18,.12),inset 0 1px 0 rgba(255,255,255,.78);
+  -webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);
+}
+.rating-band__inner{width:auto;white-space:nowrap;color:#fffaf5}
+.rating-score,.rating-copy{color:#fffaf5;text-shadow:0 1px 10px rgba(40,25,18,.3)}
+.rating-divider{background:rgba(255,255,255,.55)}
+.hero{position:relative;display:block;min-height:780px;padding-top:0;overflow:hidden}
+.hero__image{position:absolute;inset:0;min-height:100%;background-size:cover;background-position:center 50%}
+.hero__image:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(39,27,21,.36),rgba(39,27,21,.08) 65%,rgba(39,27,21,.05))}
+.hero__image:after{content:"";position:absolute;inset:14px;border:1px solid rgba(255,255,255,.26);border-radius:30px;pointer-events:none}
+.hero__caption{display:none}
+.hero__copy{
+  position:relative;z-index:2;min-height:780px;width:min(1240px,100%);margin:0 auto;
+  padding:250px 32px 100px;justify-content:center;align-items:flex-start;
+}
+.hero__copy:before{display:none}
+.hero__copy h1{max-width:8ch;color:#fffaf5;text-shadow:0 4px 30px rgba(35,22,16,.28)}
+.hero__copy p:not(.eyebrow){color:rgba(255,250,245,.92);text-shadow:0 2px 16px rgba(35,22,16,.25)}
+.hero__actions .text-link{color:white;border-color:rgba(255,255,255,.72)}
+@media(max-width:760px){
+ .header{top:14px;width:calc(100% - 24px);border-radius:28px}
+ .header__inner{height:68px;padding:0 14px 0 18px}
+ .logo strong{font-size:1.7rem}
+ .logo span{font-size:.48rem}
+ .nav{top:68px;left:10px;right:10px;border:1px solid rgba(255,255,255,.65);border-radius:0 0 22px 22px;
+   background:rgba(245,239,232,.82);box-shadow:0 18px 35px rgba(44,31,24,.12)}
+ .nav a{color:var(--ink);text-shadow:none}
+ .rating-band{top:98px;min-height:42px;padding:0 14px}
+ .rating-band__inner{gap:7px;font-size:.62rem}
+ .rating-stars{font-size:.8rem}
+ .rating-score,.rating-copy{font-size:.65rem;color:#fffaf5}
+ .hero{min-height:720px}
+ .hero__image{min-height:720px;background-position:58% center}
+ .hero__copy{min-height:720px;padding:230px 24px 72px;justify-content:flex-end}
+ .hero__copy h1{font-size:clamp(2.8rem,12vw,4.1rem);max-width:8ch}
+ .hero__copy p:not(.eyebrow){font-size:.9rem;max-width:340px}
+ .hero__actions{align-items:flex-start;flex-direction:column;gap:14px}
+ .hero__actions .btn{background:rgba(255,250,245,.24);border-color:rgba(255,255,255,.7)}
+ .hero__image:after{inset:8px;border-radius:22px}
+}
+
+
+/* Final hero/header refinement – warm Liquid Glass */
+.header{
+  position:absolute;top:22px;left:50%;transform:translateX(-50%);
+  width:min(1320px,calc(100% - 64px));z-index:60;
+  border:1px solid rgba(255,255,255,.76);border-radius:999px;
+  background:rgba(250,246,240,.60);
+  -webkit-backdrop-filter:blur(28px) saturate(175%);backdrop-filter:blur(28px) saturate(175%);
+  box-shadow:0 14px 42px rgba(48,35,27,.12),inset 0 1px 0 rgba(255,255,255,.9);
+}
+.header__inner{height:76px;padding:0 24px}
+.logo strong,.logo span{color:#302723;text-shadow:none}
+.nav a{color:#40332d;text-shadow:none}
+.nav a:after{background:var(--clay)}
+.header__cta{background:rgba(255,255,255,.70);border:1px solid rgba(255,255,255,.95);color:#302723;box-shadow:0 5px 18px rgba(48,35,27,.08),inset 0 1px 0 white}
+.header__cta:hover{background:white;color:#302723}
+.burger{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9)}
+.burger span{background:#40332d}
+.rating-band{
+  position:absolute;z-index:20;top:118px;left:50%;transform:translateX(-50%);
+  width:max-content;max-width:calc(100% - 36px);min-height:46px;padding:0 22px;
+  border:1px solid rgba(255,255,255,.72);border-radius:999px;
+  background:rgba(250,246,240,.56);
+  box-shadow:0 10px 30px rgba(48,35,27,.10),inset 0 1px 0 rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(24px) saturate(170%);backdrop-filter:blur(24px) saturate(170%);
+}
+.rating-band__inner{width:auto;white-space:nowrap;color:#40332d}
+.rating-score,.rating-copy{color:#40332d;text-shadow:none}
+.rating-divider{background:rgba(64,51,45,.22)}
+.hero{position:relative;display:block;min-height:780px;padding-top:0;overflow:hidden}
+.hero__image{
+  position:absolute;inset:0;min-height:100%;
+  background-image:linear-gradient(90deg,rgba(42,31,25,.56),rgba(42,31,25,.23) 52%,rgba(42,31,25,.06)),url('/assets/kanzen-gallery.webp');
+  background-size:cover,100% 300%;background-position:center,center 0%;
+}
+.hero__image:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(38,27,21,.25),transparent 55%)}
+.hero__image:after{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.34);border-radius:28px;pointer-events:none}
+.hero__copy{
+  position:relative;z-index:2;min-height:780px;width:min(1240px,100%);margin:0 auto;
+  padding:230px 32px 100px;justify-content:center;align-items:flex-start;
+}
+.hero__copy:before{display:none}
+.hero__copy .eyebrow{color:#f4d9c8;text-shadow:0 1px 12px rgba(30,20,15,.3)}
+.hero__copy h1{max-width:9ch;color:#fffaf5;text-shadow:0 4px 28px rgba(35,22,16,.3)}
+.hero__copy p:not(.eyebrow){color:rgba(255,250,245,.94);text-shadow:0 2px 14px rgba(35,22,16,.3);max-width:480px}
+.hero__actions .text-link{color:white;border-color:rgba(255,255,255,.78)}
+.hero__actions .btn{background:rgba(255,250,245,.88);color:#302723;border-color:rgba(255,255,255,.95);box-shadow:0 8px 26px rgba(30,20,15,.16),inset 0 1px 0 white}
+.hero__actions .btn:hover{background:white;color:#302723}
+@media(max-width:760px){
+ .header{top:12px;width:calc(100% - 24px);border-radius:24px}
+ .header__inner{height:66px;padding:0 14px 0 18px}
+ .logo strong{font-size:1.7rem}.logo span{font-size:.48rem}
+ .nav{top:66px;left:8px;right:8px;border:1px solid rgba(255,255,255,.8);border-radius:0 0 20px 20px;background:rgba(250,246,240,.9);box-shadow:0 18px 35px rgba(44,31,24,.12)}
+ .nav a{color:#40332d;text-shadow:none}
+ .rating-band{top:92px;min-height:40px;padding:0 13px}
+ .rating-band__inner{gap:7px;font-size:.62rem}
+ .rating-stars{font-size:.8rem}
+ .rating-score,.rating-copy{font-size:.63rem;color:#40332d}
+ .hero{min-height:720px}
+ .hero__image{min-height:720px;background-size:cover,100% 300%;background-position:center,center 0%}
+ .hero__copy{min-height:720px;padding:220px 24px 66px;justify-content:flex-end}
+ .hero__copy h1{font-size:clamp(2.8rem,12vw,4.1rem);max-width:8ch}
+ .hero__copy p:not(.eyebrow){font-size:.9rem;max-width:340px}
+ .hero__actions{align-items:flex-start;flex-direction:column;gap:14px}
+ .hero__image:after{inset:8px;border-radius:20px}
+}
+
 </style>
 </head>
 <body>
-<main>
-  <h1 id="cs">Coming Soon</h1>
-  <form id="f" autocomplete="off">
-    <input id="pw" type="password" placeholder="Passwort" aria-label="Passwort" enterkeyhint="go">
-    <button type="submit">&rarr;</button>
-  </form>
+<div class="topline">Signature Beauty · Frankfurt am Main</div>
+<header class="header">
+  <div class="wrap header__inner">
+    <a href="#top" class="logo" aria-label="Kanzen – Startseite">
+      <strong>Kanzen</strong><span>Beauty Studio · Frankfurt</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Hauptnavigation">
+      <a href="#behandlungen">Behandlungen</a>
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#studio">Das Studio</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="btn header__cta" href="#kontakt">Termin anfragen <span aria-hidden="true"></span></a>
+    <button class="burger" id="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="rating-band" aria-label="Google-Bewertung">
+  <div class="wrap rating-band__inner">
+    <span class="rating-stars" aria-label="viereinhalb von fünf Sternen">★★★★<span style="display:inline-block;background:linear-gradient(90deg,#a46a37 50%,#cdb8a8 50%);color:transparent;background-clip:text">★</span></span>
+    <span class="rating-score">4,5 / 5</span>
+    <span class="rating-divider" aria-hidden="true"></span>
+    <span class="rating-copy">Google-Bewertung</span>
+  </div>
+</div>
+<main id="top">
+  <section class="hero">
+    <div class="hero__copy">
+      <h1>Wohl in deiner Haut. Ganz bei dir.</h1>
+      <p>Moderne Laser-Haarentfernung und ausgewählte Hautbehandlungen – persönlich begleitet, sorgfältig durchgeführt und in ruhiger Studioatmosphäre.</p>
+      <div class="hero__actions">
+        <a class="btn" href="#kontakt">Termin anfragen <span aria-hidden="true"></span></a>
+        <a class="text-link" href="#behandlungen">Behandlungen entdecken</a>
+      </div>
+    </div>
+    <div class="hero__image photo photo--room" role="img" aria-label="Einblick in das Kanzen Beauty Studio mit moderner Behandlungsliege">
+      <div class="hero__caption">Kanzen</div>
+    </div>
+  </section>
+  <div class="marquee" aria-label="Kanzen – persönlich, modern, aufmerksam">
+    <div class="marquee__track">
+      <div class="marquee__group"><span class="marquee__item">Persönlich statt von der Stange</span><span class="marquee__item">Zeit für deine Haut</span><span class="marquee__item">Technologie mit Sorgfalt</span><span class="marquee__item">Dein Moment bei Kanzen</span></div>
+      <div class="marquee__group" aria-hidden="true"><span class="marquee__item">Persönlich statt von der Stange</span><span class="marquee__item">Zeit für deine Haut</span><span class="marquee__item">Technologie mit Sorgfalt</span><span class="marquee__item">Dein Moment bei Kanzen</span></div>
+    </div>
+  </div>
+  <section class="section" id="behandlungen">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>Behandlungen</h2></div>
+        <p>Jede Haut ist anders. Deshalb beginnt jede Behandlung mit einem persönlichen Blick auf deine Wünsche und Bedürfnisse.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <div class="service__photo photo photo--laser" role="img" aria-label="Laser-Haarentfernung während einer Behandlung"><span class="service__number">01 / 04</span></div>
+          <div class="service__body"><h3>Dauerhafte Haarentfernung</h3><p>Für ein langanhaltend glattes Hautgefühl – individuell auf dich abgestimmt.</p><a class="service__link" href="#kontakt">Mehr erfahren <span></span></a></div>
+        </article>
+        <article class="service">
+          <div class="service__photo photo photo--detail" role="img" aria-label="Behandlungsliege und Ausstattung im Kanzen Studio"><span class="service__number">02 / 04</span></div>
+          <div class="service__body"><h3>Hautverjüngung</h3><p>Gezielte Impulse für ein frischer und ebenmäßiger wirkendes Hautbild.</p><a class="service__link" href="#kontakt">Mehr erfahren <span></span></a></div>
+        </article>
+        <article class="service">
+          <div class="service__photo photo photo--room" role="img" aria-label="Einblick in das moderne Kanzen Behandlungszimmer"><span class="service__number">03 / 04</span></div>
+          <div class="service__body"><h3>Carbon Peel</h3><p>Eine intensive Gesichtsbehandlung zur Verfeinerung des Hautbilds.</p><a class="service__link" href="#kontakt">Mehr erfahren <span></span></a></div>
+        </article>
+        <article class="service">
+          <div class="service__photo photo photo--laser" role="img" aria-label="Moderne Technologie für Hautbehandlungen"><span class="service__number">04 / 04</span></div>
+          <div class="service__body"><h3>IPL-Behandlungen</h3><p>Für ausgewählte Hautanliegen wie Pigmentflecken und sichtbare Rötungen.</p><a class="service__link" href="#kontakt">Mehr erfahren <span></span></a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="about" id="ueber-mich">
+    <div class="about__image photo photo--laser" role="img" aria-label="Persönliche Laserbehandlung durch die behandelnde Fachkraft"></div>
+    <div class="about__copy">
+      <h2>Deine Haut. Deine Wünsche. Meine Aufmerksamkeit.</h2>
+      <p>Ich bin Aylin Kaiser. Bei Kanzen geht es nicht um schnelle Versprechen, sondern um eine Behandlung, die zu dir passt. Ich nehme mir Zeit, höre zu und erkläre dir verständlich, was möglich ist – und was nicht.</p>
+      <div class="signature">Aylin</div>
+    </div>
+  </section>
+  <section class="section" id="studio">
+    <div class="wrap studio">
+      <div class="studio__copy">
+        <h2>Willkommen im Studio.</h2>
+        <p>Warme Materialien, klare Formen und eine ruhige Atmosphäre. Das Kanzen Studio ist bewusst so gestaltet, dass du für einen Moment aus dem Alltag heraustreten kannst.</p>
+        <a class="text-link" href="#kontakt">Besuch vereinbaren </a>
+      </div>
+      <div><div class="studio__image photo photo--room" role="img" aria-label="Kanzen Behandlungsraum mit Holzlamellen und moderner Liege"></div><div class="studio__note">Kanzen Signature Beauty · Frankfurt</div></div>
+    </div>
+  </section>
+  <section class="section values">
+    <div class="wrap values__inner">
+      <div class="values__intro"><h2>So fühlt sich Kanzen an.</h2><p>Jede Behandlung beginnt damit, dass wir verstehen, was dir wichtig ist.</p></div>
+      <div class="values-showcase" id="values-showcase" aria-live="polite">
+        <div class="values-showcase__visual"><span class="values-showcase__index" id="value-index">01 / 03</span><div class="values-showcase__word" id="value-word">Persönlich</div></div>
+        <div class="values-showcase__content"><h3 id="value-title">Du stehst im Mittelpunkt.</h3><p id="value-copy">Wir sprechen zuerst über deine Wünsche. Gemeinsam finden wir heraus, welche Behandlung sinnvoll ist.</p>
+          <div class="values-showcase__controls"><div class="values-tabs" role="group" aria-label="Was Kanzen ausmacht"><button class="value-tab is-active" type="button" data-value="0" aria-pressed="true">Persönlich</button><button class="value-tab" type="button" data-value="1" aria-pressed="false">Sorgfältig</button><button class="value-tab" type="button" data-value="2" aria-pressed="false">Modern</button></div><div class="values-progress" aria-hidden="true"><span id="value-progress"></span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap faq">
+      <div class="faq__intro"><h2>Fragen vor deinem Termin?</h2><p>Du bist dir noch nicht sicher, welche Behandlung passt? Das klären wir am besten in einem persönlichen Gespräch.</p></div>
+      <div class="faq-list">
+        <details><summary>Wie finde ich die richtige Behandlung?</summary><p>Am Anfang steht immer ein persönliches Gespräch. Dabei besprechen wir deine Wünsche, deine Haut und welche Behandlung für dich infrage kommt.</p></details>
+        <details><summary>Ist vor der ersten Behandlung eine Beratung möglich?</summary><p>Ja. Gerade vor der ersten Behandlung ist es sinnvoll, offene Fragen und mögliche Erwartungen in Ruhe zu klären.</p></details>
+        <details><summary>Wie kann ich einen Termin vereinbaren?</summary><p>Schreib uns deine Anfrage. Wir melden uns, um einen passenden Termin und die nächsten Schritte abzustimmen.</p></details>
+      </div>
+    </div>
+  </section>
 </main>
+<footer class="footer">
+  <div class="wrap footer__inner"><span class="footer__brand">Kanzen</span><span>Signature Beauty · Frankfurt am Main</span><nav class="footer__links" aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav><span>© <span id="year"></span> Kanzen</span></div>
+</footer>
 <script>
-const P = { s: "Vqn2hejV2F7XWCQJS1tk9w==", i: "mR/3R2gIePQ0uPqh", n: 250000, d: "+IkVkIp/K55Pm/59wFeapUpNO5ge7Ed6tCU52J4WkxJ+ft31s/gteZTtZM1G8/nZu0t4ALVgs7HQKeae+zeSWpErgcWb/bAzBrQzHJM7+DMWQDNI0UvLVzzvwx/mCD8+9UWDR5KcCOwmrHq3190EPLYBHgfibPucRLUYo77GrgHfA8SxBenn8+UOQhPi5yJdamNjzNbMmIYjjFX58CUuo7Cnl5Kmmx3ScwldznL0ciLdHrKM/W0CCsONo5Zsck1GI3DOsoWQmYTkiXXoX8ofGDAo+H/m56daprkSVep3jHpPZPM4W1+b54DblM4L41+4j3sHsg5F7NDJkHg9GNQv9Upi3zk643FV85aU4u9CcEoSDIqxFle6FZIuTMPGR24tscHGOsM0G9VdfgiO25upHD5nprN8m3byfnDmihHDxtEIDAfuoPINE2k93nkLZqw5rc7QJa3DVFhh0Vp7mmgYlfmyNY8mM3IjFTq5pU5LR9trfIUlphgdwadS8+MbRgtHFoKCOeF81EG5t2UVc58RSQH05zR++66bFJLCtw9BsgQactuIm5VRX/anWgQA2Ax/2f9/lh6IxTRlVA+u3kibHL07vLUjfC7Xc3YoZrG1GWYJcXrWjipfT00c6bFWSkS9b+rmru7f5MT++8z6/6kc+eFcnKjWmJcUOeCsHLpLmSSrDr1XymvlGt06PrjpozEPHsMSFcYTLTsk3zFDNxUFYBfO8sTJVL6Z9Y3omyTDHCjmgt3KeKvvrIVDdl+s5nyPec7PmLNBPAzktsQJTsT5e8KHR3VfbK6qRJupUDLsRQIFA36ujpyKjfJfSynjjwsNsudxMf0sDv3Y5fisj2lWVR1IoUsf54YXv0WKPV/s9AE5aAEZx2Inj8SSAYisVgYPUuck3/Oh4AedzjWMxxeunQTH1PJwrCDLyzsJpcgNfTp7CXK1gmB0piXIbnwB5eIPCkXJibL1BZlGhGjKWXqLm12QVir2sBV3his4DXaAB3M6+wDYIC9Ei8suRWPimyi1rxJ/abSQmiu82srB2PwbsWik2rLAbyJVWLDB5qSd3i5u6ziLlYF7/rzq3HvCHp29gopDccN98gJToVMz5z6CebYPVnSWRi1tpuJrYWwAx1QngRtCHDp5t96Y1Fp3/0EXd0tURBtMFEIlvAdZ14+OQPoCLQhRQMr6o0r+5ApmX1Zk2NejuRQJwxkv+vg3cHcd2Y+PbcqsSxL4K/9VTwraSIWdm6fMGFA97nbLGIyTXJ25bsUkJDAKEbhihgbY8T2C2CiMoHPG/TAhM//VZbGyOkCv5w+xNb6+1vDme9GbqiCKE33/1HoW8w/HpJ103dCm4915BLZlKKmG1xAM58mtGJNTQIgpDfaCU7HSOn78VA8ojFKNgzQF/cu7tzIp2S9JAiGD/GXm0iGM7Raq9nK4PIbWXp+r3gkQMpYwiRazfeGyWQ9COA/M2965nBapmfj3az+6t8x3p7qlyAF78ijH/GeU/uECkhhkT8hf/SJUpyIkDiFjvZ40eq1sUY9kKAajZ/v/vS+9MxbMNIBBW0jlF7uYwBGUHdYEgzkUVP1e5SLsMeWEv+3wshw9DJ/chdn+h6NEpf3Lnvr8VmOuF6tFsOWLnKz56ocb41H4eTCpU4k6nyq+7LXistejz1MVrmjmvVEI1t0bIfOEx7+rhDvKod5ou+M7B2C0plShJr14oxxEQTjOkNPzVM+Iqoj7mx8mNbYqVB4ygd1Q0fTxSagme5lQPr92r8n45ur6lL1LAOz8lA7pYIDM/0ixGOgufIc5yjewSzO5z+hId7Fn/Yy9Fx1gGXxOjBaeWRW5vCGLD+PrB4Dcfdg9a7YYRwAgItj9dJ7YkOGupJneBvxEK1FNa+hn+0fh+pwntNMzAU8nBaRpMvQ3nZ2hNYG9KUC+pNQos8cRXnK/aOW9mExrjuNqDsPRbGWAN9QRj1ULzTy+/p7s3AZpWqUb1ehUk/NoYtDLcq0AToB1PY34xctqC6LK1LVVqqp3Df0G2xqaCD24R7rG23YlqCFZDqFFJXiezce2Et9vXHoAMzFKpJOsEl53RHsimIq+hcXxhagOpRfVA5z2irlkhu3VxKHFbUlbVkn8gqOVeVpToQlCW3QjRssBpn/SmixnaJhKM7xl/cYS6TSHU3fFwGPba0s0kbg87xRkGbHYSwWjhQgfktLkyXRPoYHIqMSVk8vIUXE/p8UK9zcI7As1fbni/wQ+ARZUeLlAT7lItmgfNCPR9ciekCsOGb6mGhXKOGPN/leYo2JnxC13S0g6k92FSqR65JtlTi29+8TlDPbqtDXwKwyfSdONgIKhlOgS5jzxZDRGROv7bi37KwP3V8xZkHTqwG2PjPjQ7kH9Wa9Zpv8SIkbuDtFtBwOs/0sV48IDXJYAdP6qLzhJxfBr63mEOH1UtZGXT0YyA38rrme+xVVmIhTppofZDdR2X4EMoK8GgQK5eZXTeIzIJLLO2Y6bOAtGMI8RU6h4YNhGSjEDeGfX8JaYFgEVy4NFIX7eoQbPhmJokq6XI4p5tNShXYKboEgnaVdr9XI6dCn3zL+jgB24quTI+Cr1pacZC0BZ1+vmStuI+u7mhwO+Mz7Y9s0cbZrZEyh07ZHCpZqYBI7fEgjVD86fi/wvO/rSgtN+FBCbnJJaqy+rxH6qgCIT3Fbcx+5anJJazYKml6h3Kcn+27LmqgKuYimGn33JyF3UMr/80cBTYyhulslqxsoskM8ZPOJjPnAf7OAhPzvWIYMri5YQKtSFADpc/kF+NXu9n7dDhNcr6GkAUfERIVlTScfWPbX1kRrfyTin9P8SUoD8NFvZ6BEo+7QgHW315h1hBe6NmDngmEgsIuku7Qrj6S4Q7GmDsUzCEouYas4/D9cZNZRBWo4ELJWii0tPcvd202YK7PpkLyCfOoTf3in+u4BH2f18jfiiyBDVe1wMD7Q5MhNxtsfsKEONZ94Wsa6l5AkA86OvHYMx9l1WxDHdpCydAu/v4GhIOMnGRrjGVYdDehfRAU+HaU6mzhPUDb90xMr7XczMMxlsfBpxK25VR0uU7mWCZc1QSAczPZhr17FQ8DcK219Ehuo3TTFjKd4ba5T2a72ropMB715eZPyRzle2mYN5cZ9AK9KAg3nV3i6jiGfGoyEQERHW7JNAAELVROoSWdloycFc5dn0Udp5wahhb/vPnR6rhvypXryXDuvp6ZlivVgZZveLxYHt82ntUNhZwg7YaGMDR4vm/sbqg/NbJ6/p7Wa/J5bKMqyLZq2dvrgt8QKehs1f7OehjgJqOGlHMzqzXlixKWpAiAj5RsMQYWpc+sHqN1aSOWl/NhQ0ZEQS7+cqzM3wOrMLVif6tQturtuZ1kc7wsZ4K3IPvUHonjb+615d64e1qNMWlhQdOd1Kqr216hESHE1b8zRttO/D5wyrFg+sizGu0Xk9Rrg3P438ohmPBEPq4/x1p41GLeTmmoJPG1MzWGSFJhUSuClU6UHiKCQ8SW2raf891HJE21p28z842VO/MsYsoMBQM9BxUStNT350PuZDwZ1xmRXfFoIevGtI3uy14XG8Qn5FxDNPOCjaGU0Oovmas6eyf7leNzTThu8IBdmnK82F1TdATpP/TaIduqsgi+sbbGVsRMCJj5b+gI7W7sVAOGvkoY+atdgzZiB7BOD/6tIYRvgrkPSoLMfGquj+GLaFhfomuL1k3FD0lOaWHTMq/n3/6vn1duk8nQp/bkkm7yzwfJbw8pphBin/xe5IJ+DYOLgs08hpu+izs5OoLhZQVZBWMwFTmMAvF4YY45H4tgjCa4rNoKANulEQihCQAlXKKWAIbhFv3s6ikFHKXcf0eC2faQbp7tYIKAvxRzzcvLDM7vdZ9b37JXgcBsA06wa4G0wCMjjYb2Ntel0f8TkloXQdVyWp2P7aZG1tq6PT/SsS4uFXi/U2w2c6VfGE/vC9QCpgIJVsML5GBlTXFBYmwxoPgbU82baMoLyRArs4amnLsP7oo0PE8IUiLJepDv1zOWhvJoz1inq2LsB0nmF8H2h/Lz2KcjSKt2GZyS69PuPRgNMmo+Wmplzkmuq3oq9issZMJEq2qH+pJdFJd2e393HRRp0gTTTEQVz4x0EbcGyfdNCeQ/1ppsbwP6TtW2CKz2gcE+tlT5zBR3pentlHRdVmU5veSfk7wVdDlngMdmb2vSnAJREN+4Zs0s5issO3BSQ+ewl8zS0+wJ05MSM65tR7nHfhZH80NilVycJ6RuW2FxV05NP92/uqXlEX2gNZvwgK3iyMEb2KBAiKjWaGP8IRQi2HXaHuPc/2n96c+r4IOHQSDItQxxV4tR/phfTTQaMCcza7u+QOuRcLGkGg8Hrjr1vphXnz+D3AYc3mClOGNpQ5+R9OIpgN+6ONHFfyj04Idro+maHpwRMlQC39TniwNa6gWdPlXU3PPEFdIX+c7BLepzDXgOQUZDldclH95Qk8pj5wv2fgsW5gAYk42xMcpbnT3kGXeUaG5R7GSyaCDfg46ZBtDv0d4vxt2Sl+ALsZjZEzgfxR3TFuKwE5YibTEeHTuhosaaHW+5ZUctvGjpDW90opFuXdb45v9NnynvUM9wuOyacRnX88oQ8Q9ZHnqVBiOGEq1Azww5Excvp+GcfZdvEJGEjll6gaF+9SUXT2GSZxTGWrNqtt3eH5/MuYwp5ATkJRcXGVDwKpa0suKjvSljjWNNBC1gvFz7Kwxq+UsV5+gF2drDAinQhrBurRHltwXohdz+kvSbvfkZbTh7wsl0Syaa47jHXdCUJpGWDBWSE5jVPbnctna7xvHKacmIybAyngfLpNxhi7fbq9w3qOleC9T7BNijGFRiztJjdJxSNUZ5FIAo/r0N/5ayBlj0JQVkuYL7o2+fPRshaTB6eSbdtVRbsoc/nxdxO769/CYMAbXWOBYkQ8Qxyzm35FHS7iSoKzxKhkdxaVw98Sf8VLT/NgJ4hXqvgk2UCFWDrEb5l0Fc1FZtYKMnsv3mMc/L3NT7j0udJKfIaDEZ7IyRlqs6DXYCgf6vLuVDoIYvzq1JtW7Zg/vi/SSyajGU42iQEyx3dHl5RdlmOOFWSzEjG21Tv40/grCk0G0mNElhK7mS+FqydXX0yFqulYiQS49+qHz0a6IvZ65vKWvvItcoEdYhIt7flivIOs+ewEzlXpFtKpaekfN+jtGTdLA4Gf5vwJVRy+aWTMCZV5w7HjyJQvZ79CdO3444n8ntDBAPJlgnW5DgdW4K7O7YygP8GhgFJJYoHwNdxszdVmH/aKWSj3Eo7qrDwjSudjHHHtwUa2qmSsS7M7VdltaRFTrsmxDauibDmnLinbenPyq94dTTboFqPsqTo9ljGcV2mLc1ZA2zvn7cOaccjfK23CP5NwCnZ4Umg5PUf9t7DS0RTTRT7CPPjyV9bhaKI02rNabT8OqYcZPRslEqaXS2OjinZiflPr6diNIqHV+RncDTcaoTh84rg1XC8UR55RG7yrCl5frION7wTnlOuwqHve2Jwmk4SRdGIkmInI+oMXMH74A9kFhkON8rsJ7otulJgCk8lcIiJqeKG7DOfBTCHmQDBPGRqiRU5BXYbmGC7S9ONEmfrvXrPC2kktcyhJI3/p6VotMY2Ky/FjwiCiAiTsMQ4fn/3w1QObKDit7ocoAs0AVJUpzX1jdMqr/Pq5hMZOcl1/bOthXAYDvslQGqLchIUUNTVrmqy8ZhZ7duFRSY323UCDuGT6PQyN9qO40BbTkzYpt0cwmTNLNMM1IzMZzSE1tGP32glJ1vGUUPXp17P9LYLWAfkFSDTNnwdoWAdDFmiB0sZ+7S3Go0CWggBcCD5AeJwHRS6QrgG+19LH0P+J8hVdLSON498/KkCF9cow15U9A4YO0CBsjXYbWByw0kqYZMFsY1U+g2E3B4Mo3+Ip6jfuUAes0HuWZbvg1NYprIf/xvrmgp9A6qUHnTfgfx/k0qcYhxb4y4hbSBMG0jtiU37QbDMYW+A8tkrdPGIrkX1BcoSMRfeXrdHDLOALBTpnnq5CQXJAFXFGu/va9wV9357vUNFsPeNJHjeu/ickZaju7H6f0Qdcy0t6rkpLchT4dmdCZSS6X+ziIe5n2rilFGqzATyi0oJp67uJ+i/F0GS4rRLcceoPzDox/JNogkGJGsA9j6fMw37vkvhoiZrDgg10h3XaoOt4sjJZBC/QkZSXxETodfYr2FC0k45JD9pNJzmeAPGWwJv+xTD+/puSkKplbizZzsPh9MgHfUGhTZIjn48FOWZQZg5G5awADslKMKdWnfkYHpwS/SDExe9MDmDJDEl1OJOox5EoR4NHvNOpuKovYcxuXVSkWivlTUCVBuqKe6JAaiaqFU7+FMYRMNHE/avJY3B591M9D2uMM1/qDRJ7kDPnEJWBdRiU1s7hABWP+9IRVz7EZJKd791/fXaPfF/30TzGfWWgHlW7TBKxFwwnwFn3vzIze49wMQU6YDW7W/0/5U7VA5LeAMEq4346TIGcTbCId7vf/DfDYdIlf0XAdQvmZh1bUdyEWpZ5bOXzpE5YgzXzJAsikfxBL12BAYvxxkPglfBsMcnEVy0qtDtrBre/Ir3RmuzFc4yy7PhqZP6lRrzzS5xKmXtHzpe3z9+luzxUPPMweDUm/6jMOJ9C73lVS5ayx51R+X4AhOlxGWaydlZw2r6klTuIuxbt6816ohprkb0+9sRUwVgoUJ9c0K2XsD+Ig8UWi7qZ4mDFKde9hLvL1zwuwgmKVS9GSIGpyloEz8soaqzcoh+RT0xYzoqwRe3vLfHTfDYj8njHXCxzYWemkVhjKijizYzUzmRhziWrH2cgi3qeVHF/s0ash+xiqsBHsGO0kfB3hb5JO7MA1fEDye2jdCRYpeY6S9UHYXLBOfTB3rGl5dcRBGMhdMG2CIVi+b7DmwfyG69TOJ+c4LRx70aKWcgA5Cb3D+Vkk8MLoDtLDgoHXOE+xJLw8rd5mUjoOKheo8OHicqZsyiA8A/RTE3hgL5zDhR9KII5dEEk85xp6LWz13i1XuUKB6xMZw2bBbHo60RUIaiYyWfQq2kvAt2RX+iJKxo5akcl0XPNEu5EvuPGAHZw3uVHT0ecPJmiBkM2kr/qSJCaS1Nur5Xo4UX2HMuXtIEpUT417GHCxV7GWKoGC620Yb7VggbzLxjfESQogd2kSc7n6uLB8xCWqiPH5Vm16pXrmz1rC6E4McxdxOXG4u+qnALH+hVn3xRAPIjojIygIC6D8eME/pbUIMjC4wj9/M1mlgwQhgrsVMxDMoAJ6s3+pG4sFxBf/4lIOmIaupEzaN6hjBJKFzy2+8HHRGprnaosis/NDMrXbu+j74Px9aq/Jac6xJw0ylrnwhDxk8PNytNehOpC5QmZQg8SBvwoeUT8iafhatCo7LBFac3+NJQ+2DIf3ZV2+lF1SiQvcU2ny1C5JotJaTq4RMIXOfdZaZYZydF0+Z2NomJLMdqz07y0XyjXp6rh1owvyTbqG/PiwUEeQMDaUqMWjk5Wphq7CusjmwL2N3l5kUfqmHEWhnMWl8Z5ihfPcx/jFrhjHM52pO8b0IGo0PTlwtwKYxpQGhizXjt7HQf671/OYsVQYPFBrGPfngceE34HksmOba4dER3ZwqZT+urOv9DO4qZdTjNzQVXBm9cilAXOlWaa8gF2OhOZNjg+FXOemOG9H2dpfwQM16VFkwr5DpUkAbnAbRDoDFHmzjbu5VxkMCKCkvg0/jF1tcYmfBbuc8shMJzUh6mg4hmHuwgjKuay4EGixqxI4aIFtB15OKXT1pbJgjzCCaf9NMHk4d3qe0HIi1tTOcN6p5dGIAnBmYcyHJiV3kTSguARSPZRSxjRBtw5VFGdC0nU60P+5QvKValSCGRFNy2NI6LwZdZSqjUaw5JoN3SdPj2p6zliY/7esNAQlcAYdiVpyevYZYMxIoEOIRlktqMwanw3fuFkbf3LqCCqp7bt5q35o+eX644NAcN36vycQPzA92strFxt8lU2MvEXOmgDHjY7cGZnI/2E9g0hCRd9WA4PcHvvIHbv5EAQC0ghEXRwOlK0eteT9YbDAJWzTrSQIA5YoP31EHlCZLpBjuykMq9tjhIccfa0Yere0SqFglpsE1Dn5lZmQYyKhOMrsW/IZG8BwWShnk6n3zwU2iwBr2x7Yb2veGUCf/N/whgGFcKocjpdzu0mscrkJShLEqPTseQ23G1HnhKMClOGquZvkGHBLj+IqK4kQ+L/+O3z5mqwJX1l4x3m8f5oxRvnpwm5Zpeav2wUJ0c31WNBiKbx5XJX60+adIv/Uoymm1HvfuEzVXPH/xYiOQ2ENLNLiSZPYmVypKo4lvMHPSVhU+u1O+itmgK3geLeEIzJG7AOjO0VMX1zNaKd4KzhLyyDFNwc44HXSrsZG0OB55do7BdTQZalq5RvQzCyUCMlgEh65chBDOn94HYqV7U+Nw+cxEnAypSAnvRbbP8zWrNW4TBxbtGUdjBs6c9BT0S6/rpHABZEjt6QDyBbKwYU9U4Lby/m7FZBMwluuA4zDT4qdXJfVQyZzsNOaFcC4Mj+O0RknysUFL8p7CBy/IeIfX9rTgs6WNwpdS1CMPdyeEe6nMTtQ+uhwlvUOXMqMAWWJN56yR8hwC0IfcsoeL1ti+eVifFswhFych63lxv3bEoCbWTnmy3l8yc/9VpNBZSwaKF3wfbPyT37oDvZo+JMk3bKgR6xGnKUwhm+ImkeYwVXTRzaGIWfg4uPy5e/Fa3Vm12QA80yQqYfpPvW9DelNCrOz0uPGBXSv1ycoqu4npxWL39rOIZE5WwRBE6zp4dtZuswiCD2qQHsSVVP14PXDze+WPEVo4poUzSt9mmrL5eU4PaxQAjHAYppbFTQD5tH2uY1G93QAhiqJtb9l2vIoRU2/uuwdd0ueFcAUcPVzoB/qCGC4f7T5iq957ScTKTjgUOGYkfTpLAYO2dGxHrN/tcXeTZp25HhiPbDg24l4bSzC9nodUTDeDZHhIQsuG4q4lfaMj4uHBQXUP69eTy8W+nxt0qrcW4vu3u/vnvKO/2+ysVSfaogtKSVKz4aMW3jhTXFhlTBfo6gbwb0Rvb/WyPhhkeyZOxEvcHusVI8jzfZ82CeaRXUTUCGR3g+/5Q2kB6EfsvH1z/GUhK/TR/VePJka5QYnJwUxNnnSwwgcyBtrTLou9HlYwwoMJFckQbAqY/BPSOGLslPmGQ6DDOrMfHAWsgpsZn4oL7y9mtSiiEvssG0erd1VU28lOpbk3s0ALigbRZowKU5Wv21w4+oQ2/Ks1Pm7PxWL1L7ndFMfu2spvz/cpVNzB+7PebM3Lgx1Qt3WQd3+bFIjYjmlF9PrSbre466jcvVDQ47K1VzhPxFPywduDFJTXxtjY7wCBSz4AXEqehWvZeoc8lNCfEMEmnDYpa6+eezQiI8GNOp0edEqVM+CPfhly1Kp9D1L+jAsLDxZ0dy3RsDlz5znhl8WJG97Ec9+cfD1Vbovl7lUla42Mc6KuzsrdSX01AFlf8xsE+XIc+bJMeXCpL4fMazL7VXscbYOcnP/AGO/fCh1Y3stpXFGGtHvk523E1+/QdgP9yChirnlcgP7AisRs8j4YAQu42vwRfirGA4wj4sABSWnHIHYLxivnH85maeYTv8VRuRWAd624UF7cOJk5lNO5KCIm789LWAnFxVQxq6Y7jdyspWf9I9J7jq4N+128Hs0i3cs7mu3KujOn60Sest2zuDoQ3iV+1kBsb9bHo30l4FoXbSdP8YghCv24/WL6bFSceMR42nvdXwfZSS+IZyM0i0tkSviEFqeQojnRhtxIXugvl1uAKysK5l/yB0dK6Qv3tgrEMm06LlBMi4X0VysQrOFXPt9TwsjNonsoB+oAAqzzUZD9wmc45AZp/xJJVyn3+xCZPgsvQZng86fqC+TVVb4WlxI9XZMT4cxh04KEQMQOfZVAKYUtquQI3bkwcJN+RbAifZ5wgy3trsasaKiAtlIiV30Rpd6a3QkHoa/MZAX3ok+cqQwuQ3zPbP3aPXGX8R7CeJKyL5rTFSUOtVlGRjKWfmkGY0fe3IiSuXcAfuTMuaj1h6i0AC6s7rZPKzKtB8l6CeTIUPRhcu9YigujCsW5aauafoWxzJv3RWahEznstGPYynNMautSN0deryPf+cNTtXGSxhodqrqumwlHVUUl8GLoYUNWftCucjhPYHN+u4ZLqKhqWUxRc3z7ZmPwSCaAEcvr6ogtWsFHeg+WwpL1e5ee8nwRjGfHI4Ae//qsUFMytWs46dt8zF1zsnNmbmEo6yqao=" };
-const u8 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
-async function unlock(pw) {
-  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
-  const key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: u8(P.s), iterations: P.n, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
-  const gz = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: u8(P.i) }, key, u8(P.d));
-  const html = await new Response(new Blob([gz]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
-  document.open(); document.write(html); document.close();
-}
-const f = document.getElementById('f'), pw = document.getElementById('pw');
-document.getElementById('cs').addEventListener('click', () => { f.classList.add('open'); pw.focus(); });
-f.addEventListener('submit', async e => {
-  e.preventDefault(); f.classList.remove('bad');
-  try { await unlock(pw.value); try { localStorage.setItem('k-pw', pw.value); } catch (_) {} }
-  catch (_) { void f.offsetWidth; f.classList.add('bad'); pw.select(); }
-});
-try { const s = localStorage.getItem('k-pw'); if (s) unlock(s).catch(() => { try { localStorage.removeItem('k-pw'); } catch (_) {} }); } catch (_) {}
+  document.getElementById('year').textContent=new Date().getFullYear();
+  const valueSlides=[
+    {word:"Persönlich",title:"Du stehst im Mittelpunkt.",copy:"Wir sprechen zuerst über deine Wünsche. Gemeinsam finden wir heraus, welche Behandlung sinnvoll ist."},
+    {word:"Sorgfältig",title:"Keine Behandlung von der Stange.",copy:"Deine Haut und dein Wohlbefinden geben den Rahmen vor – nicht ein festes Schema."},
+    {word:"Modern",title:"Technik mit Augenmaß.",copy:"Moderne Geräte und eine verständliche Erklärung gehören für mich selbstverständlich dazu."}
+  ];
+  const valueTabs=[...document.querySelectorAll('.value-tab')];
+  let activeValue=0, valueTimer;
+  function showValue(index){
+    activeValue=index;
+    const slide=valueSlides[index];
+    document.getElementById('value-index').textContent=String(index+1).padStart(2,'0')+' / 03';
+    document.getElementById('value-word').textContent=slide.word;
+    document.getElementById('value-title').textContent=slide.title;
+    document.getElementById('value-copy').textContent=slide.copy;
+    valueTabs.forEach((tab,i)=>{tab.classList.toggle('is-active',i===index);tab.setAttribute('aria-pressed',String(i===index))});
+    const progress=document.getElementById('value-progress');
+    progress.style.transition='none';progress.style.width='0';
+    requestAnimationFrame(()=>{progress.style.transition='width 6s linear';progress.style.width='100%'});
+  }
+  function restartValueTimer(){clearInterval(valueTimer);if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)valueTimer=setInterval(()=>showValue((activeValue+1)%valueSlides.length),6000)}
+  valueTabs.forEach((tab)=>tab.addEventListener('click',()=>{showValue(Number(tab.dataset.value));restartValueTimer()}));
+  const showcase=document.getElementById('values-showcase');
+  showcase.addEventListener('mouseenter',()=>clearInterval(valueTimer));
+  showcase.addEventListener('mouseleave',restartValueTimer);
+  showValue(0);restartValueTimer();
+
+  const burger=document.getElementById('burger'),nav=document.getElementById('nav');
+  burger.addEventListener('click',()=>{const open=nav.classList.toggle('open');burger.classList.toggle('open',open);burger.setAttribute('aria-expanded',String(open));burger.setAttribute('aria-label',open?'Menü schließen':'Menü öffnen')});
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Menü öffnen')}));
 </script>
 </body>
 </html>
