@@ -76,9 +76,9 @@ p{color:var(--muted)}
 .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .service{min-width:0}
 .photo{background-image:url('/assets/kanzen-gallery.webp');background-size:100% 300%;background-repeat:no-repeat;background-color:#c49a84;overflow:hidden}
-.photo--detail{background-position:center 6%}
-.photo--room{background-position:center 50%}
-.photo--laser{background-position:center 94%}
+.photo--detail{background-position:center 50%}
+.photo--room{background-position:center 0%}
+.photo--laser{background-position:center 100%}
 .service__photo{aspect-ratio:4/4.7;position:relative;transition:filter .3s}
 .service:hover .service__photo{filter:saturate(1.08)}
 .service__number{position:absolute;left:16px;top:16px;color:white;font:500 .65rem "DM Sans",sans-serif;letter-spacing:.1em;text-shadow:0 1px 8px #0006}
@@ -502,6 +502,37 @@ summary:after{width:28px;height:28px;display:grid;place-items:center;border-radi
  .hero__image:after{inset:8px;border-radius:20px}
 }
 
+
+/* Final polish: fixed Liquid Glass navigation, no decorative banner strips */
+html{scroll-padding-top:112px}
+.header{
+  position:fixed!important;top:14px!important;left:50%!important;right:auto!important;
+  transform:translateX(-50%)!important;width:min(1320px,calc(100% - 64px))!important;
+  z-index:1000!important;border:1px solid rgba(255,255,255,.76)!important;
+  border-radius:999px!important;background:rgba(250,246,240,.72)!important;
+  -webkit-backdrop-filter:blur(30px) saturate(180%)!important;
+  backdrop-filter:blur(30px) saturate(180%)!important;
+  box-shadow:0 14px 42px rgba(48,35,27,.12),inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
+.header__inner{height:72px}
+.marquee,.rating-band{display:none!important}
+.photo--detail{background-position:center 50%}
+.photo--room{background-position:center 0%}
+.photo--laser{background-position:center 100%}
+@media(max-width:760px){
+  html{scroll-padding-top:82px}
+  .header{top:10px!important;width:calc(100% - 20px)!important;border-radius:23px!important}
+  .header__inner{height:64px;padding:0 13px 0 17px}
+  .nav{top:64px!important;left:8px!important;right:8px!important;
+    border:1px solid rgba(255,255,255,.78)!important;border-top:0!important;
+    border-radius:0 0 19px 19px!important;background:rgba(250,246,240,.93)!important;
+    box-shadow:0 18px 35px rgba(44,31,24,.12)!important}
+  .nav.open{max-height:min(420px,calc(100vh - 92px))!important;overflow-y:auto}
+  .nav a{color:#40332d!important;text-shadow:none!important}
+  body{padding-bottom:0!important}
+  .footer{padding-bottom:34px!important}
+}
+
 </style>
 </head>
 <body>
@@ -543,12 +574,6 @@ summary:after{width:28px;height:28px;display:grid;place-items:center;border-radi
       <div class="hero__caption">Kanzen</div>
     </div>
   </section>
-  <div class="marquee" aria-label="Kanzen – persönlich, modern, aufmerksam">
-    <div class="marquee__track">
-      <div class="marquee__group"><span class="marquee__item">Persönlich statt von der Stange</span><span class="marquee__item">Zeit für deine Haut</span><span class="marquee__item">Technologie mit Sorgfalt</span><span class="marquee__item">Dein Moment bei Kanzen</span></div>
-      <div class="marquee__group" aria-hidden="true"><span class="marquee__item">Persönlich statt von der Stange</span><span class="marquee__item">Zeit für deine Haut</span><span class="marquee__item">Technologie mit Sorgfalt</span><span class="marquee__item">Dein Moment bei Kanzen</span></div>
-    </div>
-  </div>
   <section class="section" id="behandlungen">
     <div class="wrap">
       <div class="section-head">
@@ -604,7 +629,7 @@ summary:after{width:28px;height:28px;display:grid;place-items:center;border-radi
       </div>
     </div>
   </section>
-  <section class="section">
+  <section class="section" id="kontakt">
     <div class="wrap faq">
       <div class="faq__intro"><h2>Fragen vor deinem Termin?</h2><p>Du bist dir noch nicht sicher, welche Behandlung passt? Das klären wir am besten in einem persönlichen Gespräch.</p></div>
       <div class="faq-list">
