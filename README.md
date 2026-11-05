@@ -3,6 +3,8 @@
 Statische One-Page-Website für Kanzen (Laser-Haarentfernung & Hautbehandlungen, Frankfurt).
 Live: https://kanzen-aesthetics.de (Vercel-Projekt `coming-soon`)
 
+Das GitHub-Repository ist öffentlich, damit Vercel-Preview-Deployments ohne Team-Mitgliedschaft möglich sind.
+
 ## Struktur
 
 | Pfad | Inhalt |
@@ -37,6 +39,4 @@ Nach jeder Änderung an `src/index.html` **immer `npm run build` ausführen** un
 - [ ] Logo-Datei
 - [ ] Impressum & Datenschutz (Pflicht!)
 - [ ] Unterseiten der Behandlungen (Links laufen aktuell ins Leere)
-- [ ] Farb-Switcher entfernen, sobald die Palette steht
-- [ ] Google-Bewertungs-Widget
 - [ ] Beim Launch: Passwortschutz entfernen (`src/index.html` direkt als `public/index.html`) und `noindex` raus
