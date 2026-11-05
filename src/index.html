@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6eee7">
+<meta name="format-detection" content="telephone=no">
+<title>Kanzen – Laser-Haarentfernung & Hautbehandlungen in Frankfurt</title>
+<meta name="description" content="Kanzen Signature Beauty by Aylin Kaiser: dauerhafte Haarentfernung, Hautverjüngung, Carbon Peel und IPL in Frankfurt am Main. Jetzt Termin buchen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FARBEN – hier zentral anpassen, sobald die Palette steht.
+   Die drei Varianten unten sind nur für die Abstimmung (Switcher).
+   ============================================================ */
+:root, [data-palette="nude"] {
+  --bg: #f6eee7;
+  --surface: #fbf7f3;
+  --text: #3b2b25;
+  --muted: #7a6359;
+  --accent: #b5735d;        /* Buttons */
+  --accent-text: #ffffff;
+  --soft: #ead8cc;          /* helle Buttons */
+  --band: #a0705f;          /* dunkle Bänder (Über mich, Footer-Leiste) */
+  --band-text: #fbf3ee;
+  --line: #dcc8bb;
+  --ph1: #d9b8a5; --ph2: #b78a74; --ph3: #8f6556;   /* Bild-Platzhalter */
+}
+[data-palette="espresso"] {
+  --bg: #f3ede6;
+  --surface: #faf6f1;
+  --text: #1f1612;
+  --muted: #5e4c43;
+  --accent: #d9482b;
+  --accent-text: #ffffff;
+  --soft: #f1d6cb;
+  --band: #2a1d18;
+  --band-text: #f6ece4;
+  --line: #d9cbbf;
+  --ph1: #c7a58f; --ph2: #7b5646; --ph3: #3a2820;
+}
+[data-palette="noir"] {
+  --bg: #efebe4;
+  --surface: #f8f6f2;
+  --text: #121212;
+  --muted: #555049;
+  --accent: #121212;
+  --accent-text: #efe6d6;
+  --soft: #ddd5c8;
+  --band: #151515;
+  --band-text: #efe6d6;
+  --line: #cfc7ba;
+  --ph1: #cbbfae; --ph2: #8d8274; --ph3: #3b3631;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body {
+  background: var(--bg); color: var(--text);
+  font: 300 16px/1.6 "Jost", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background .3s, color .3s;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+
+h1, h2, h3.serif { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; line-height: 1.05; }
+h1 { font-size: clamp(2.4rem, 4vw, 3.3rem); text-transform: uppercase; letter-spacing: .01em; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); text-transform: uppercase; }
+.eyebrow { font-size: .74rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: .6em;
+  font: 400 .76rem/1 "Jost", sans-serif; letter-spacing: .18em; text-transform: uppercase;
+  padding: 1.05em 1.9em; border-radius: 999px; border: 0; cursor: pointer;
+  background: var(--accent); color: var(--accent-text);
+  transition: transform .2s, filter .2s;
+}
+@media (hover: hover) { .btn:hover { transform: translateY(-2px); filter: brightness(1.08); } }
+.btn { min-height: 44px; -webkit-tap-highlight-color: transparent; }
+.btn--soft { background: var(--soft); color: var(--text); }
+.btn--light { background: var(--surface); color: var(--text); }
+
+/* Bild-Platzhalter: werden durch echte Fotos ersetzt (<img> statt <div class="ph">) */
+.ph {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 80% 10%, rgba(255,255,255,.35), transparent 60%),
+    linear-gradient(135deg, var(--ph1), var(--ph2) 60%, var(--ph3));
+}
+.ph::after {
+  content: attr(data-label);
+  position: absolute; left: 14px; bottom: 12px;
+  font-size: .66rem; letter-spacing: .14em; text-transform: uppercase;
+  color: rgba(255,255,255,.85); background: rgba(0,0,0,.18);
+  padding: .35em .7em; border-radius: 4px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header .wrap { display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 24px; }
+.logo { display: flex; flex-direction: column; line-height: 1; }
+.logo b { font: 400 2.2rem/1 "Cormorant Garamond", serif; letter-spacing: -.01em; }
+.logo small { font-size: .55rem; letter-spacing: .32em; text-transform: uppercase; margin-top: 4px; color: var(--muted); }
+.nav { display: flex; gap: 34px; }
+.nav a { font-size: .74rem; letter-spacing: .18em; text-transform: uppercase; padding: 6px 0; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.nav a:hover, .nav a.active { border-color: currentColor; }
+.burger { display: none; background: none; border: 0; width: 44px; height: 44px; cursor: pointer; color: var(--text); }
+.burger span { display: block; width: 24px; height: 1.5px; background: currentColor; margin: 6px auto; transition: transform .25s, opacity .25s; }
+
+/* ---------- Hero ---------- */
+.hero { display: grid; grid-template-columns: 1fr 1.25fr; min-height: min(640px, 88vh); }
+.hero__text { padding: clamp(40px, 7vw, 96px) clamp(16px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+.hero__text p { max-width: 30em; font-size: 1.05rem; }
+.hero__img { min-height: 380px; }
+.hero__img .claim { position: absolute; right: 40px; bottom: 60px; text-align: right; color: #fff; font-size: .78rem; letter-spacing: .3em; line-height: 2.2; z-index: 1; }
+
+/* ---------- USP-Leiste ---------- */
+.usps { background: var(--surface); border-block: 1px solid var(--line); }
+.usps ul { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); }
+.usps li { text-align: center; padding: 32px 12px; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; }
+.usps li + li { border-left: 1px solid var(--line); }
+.usps svg { width: 30px; height: 30px; margin: 0 auto 12px; stroke: var(--accent); fill: none; stroke-width: 1.2; }
+
+/* ---------- Behandlungen ---------- */
+section { padding: clamp(64px, 9vw, 110px) 0; }
+.head { text-align: center; margin-bottom: 48px; display: grid; gap: 12px; }
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.card { background: var(--surface); border-radius: 4px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 0 var(--line); transition: transform .25s, box-shadow .25s; }
+@media (hover: hover) { .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(0,0,0,.35); } }
+.card .ph { aspect-ratio: 4/3; }
+.card__body { padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.card h3 { font-size: .82rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.card p { font-size: .92rem; color: var(--muted); flex: 1; }
+.card .btn { align-self: flex-start; margin-top: 6px; padding: .9em 1.5em; }
+
+/* ---------- Über mich ---------- */
+.about { display: grid; grid-template-columns: 1fr 1fr; background: var(--band); color: var(--band-text); padding: 0; }
+.about__text { padding: clamp(56px, 8vw, 100px) clamp(16px, 6vw, 80px); display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+.about__text p { max-width: 32em; opacity: .92; }
+.about .ph { min-height: 420px; }
+.about .eyebrow { color: inherit; opacity: .75; }
+
+/* ---------- Mehr als Beauty ---------- */
+.more { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 0; padding: 0; }
+.more .ph { min-height: 360px; }
+.more__text { background: var(--surface); padding: clamp(40px, 5vw, 64px); display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+
+/* ---------- Rezensionen ---------- */
+.reviews { background: var(--surface); }
+.widget-slot {
+  border: 1.5px dashed var(--line); border-radius: 8px; padding: 28px;
+  display: grid; gap: 20px;
+}
+.widget-note { text-align: center; font-size: .82rem; color: var(--muted); }
+.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.review { background: var(--bg); padding: 24px; border-radius: 6px; display: grid; gap: 10px; }
+.review .stars { color: var(--accent); letter-spacing: .15em; }
+.review .line { height: 9px; border-radius: 9px; background: var(--line); }
+.review .line.s { width: 60%; }
+.reviews .cta { text-align: center; margin-top: 32px; }
+
+/* ---------- Kontakt ---------- */
+.contact .grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; }
+.contact dl { display: grid; gap: 18px; margin-top: 28px; }
+.contact dt { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.contact dd { font-size: 1.05rem; margin-top: 2px; }
+.contact dd a { border-bottom: 1px solid var(--line); }
+.contact .ph { aspect-ratio: 4/3; border-radius: 4px; }
+
+/* ---------- Footer ---------- */
+.trust { background: var(--band); color: var(--band-text); }
+.trust ul { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); padding: 34px 0; }
+.trust li { display: flex; align-items: center; gap: 14px; justify-content: center; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; }
+.trust svg { width: 28px; height: 28px; stroke: currentColor; fill: none; stroke-width: 1.2; flex: none; }
+footer { padding: 28px 0; font-size: .8rem; color: var(--muted); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer nav { display: flex; gap: 22px; }
+
+/* ---------- Farb-Switcher (nur für die Abstimmung, später entfernen) ---------- */
+.palette {
+  position: fixed; right: 16px; bottom: 16px; z-index: 60;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 8px 6px 14px; display: flex; align-items: center; gap: 8px;
+  font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  box-shadow: 0 10px 30px -12px rgba(0,0,0,.3);
+}
+.palette button { width: 26px; height: 26px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; }
+.palette button[aria-pressed="true"] { border-color: var(--text); }
+
+/* ---------- Mobile CTA-Leiste ---------- */
+.mobile-cta { display: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 960px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .more { grid-template-columns: 1fr 1fr; }
+  .more .more__text { grid-column: 1 / -1; order: -1; }
+  .review-grid { grid-template-columns: 1fr; }
+  .review:nth-child(n+2) { display: none; }
+}
+@media (max-width: 860px) {
+  .burger { display: block; }
+  .header .btn { display: none; }
+  .nav {
+    position: absolute; top: 76px; left: 0; right: 0;
+    flex-direction: column; gap: 0; background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    max-height: 0; overflow: hidden; transition: max-height .3s;
+  }
+  .nav a { padding: 18px 16px; border-bottom: 1px solid var(--line); }
+  .nav.open { max-height: 400px; }
+  .burger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+  .hero, .about, .contact .grid { grid-template-columns: 1fr; }
+  .hero__img { order: -1; min-height: 320px; }
+  .usps ul, .trust ul { grid-template-columns: repeat(2, 1fr); }
+  .usps li:nth-child(3) { border-left: 0; }
+  .usps li:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .trust li { justify-content: flex-start; padding: 12px 0; }
+}
+@media (max-width: 860px) {
+  html { scroll-padding-top: 72px; }
+  .header .wrap { height: 64px; }
+  .logo b { font-size: 1.9rem; }
+  .nav { top: 64px; }
+  .nav a { font-size: .82rem; }
+  .hero { min-height: 0; }
+  .hero__img { min-height: 220px; }
+  .hero__img .claim { right: 20px; bottom: 44px; font-size: .68rem; line-height: 2; }
+  .hero__text { padding: 32px 16px 44px; gap: 18px; }
+  .hero__text p { font-size: 1rem; }
+  section { padding: 56px 0; }
+  .head { margin-bottom: 32px; }
+  .about__text { padding: 48px 16px; }
+  .about .ph { min-height: 260px; }
+  .more__text { padding: 40px 16px; }
+  .widget-slot { padding: 18px; }
+  .usps li { padding: 22px 8px; font-size: .66rem; }
+  .ph::after { max-width: calc(100% - 28px); }
+  /* fixe CTA-Leiste unten */
+  .mobile-cta {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--bg) 94%, transparent);
+    backdrop-filter: blur(10px); border-top: 1px solid var(--line);
+  }
+  .mobile-cta .btn { justify-content: center; padding: 1em .6em; white-space: nowrap; letter-spacing: .12em; }
+  body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+  .palette { right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); padding: 5px 6px; }
+  .palette span { display: none; }
+  .palette button { width: 22px; height: 22px; }
+}
+@media (max-width: 520px) {
+  .cards, .more { grid-template-columns: 1fr; }
+  .card .ph { aspect-ratio: 16/9; }
+  .more .ph { min-height: 220px; }
+  .more .ph:last-child { display: none; }
+  h1 { font-size: 2.3rem; }
+  h2 { font-size: 1.9rem; }
+  .trust ul { padding: 20px 0; }
+}
+</style>
+</head>
+<body data-palette="nude">
+
+<header class="header">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Kanzen – zur Startseite">
+      <!-- TODO: durch Logo-Datei ersetzen: <img src="img/logo.svg" alt="Kanzen" height="48"> -->
+      <b>kanzen</b>
+      <small>Smooth. Elegant. Perfect.</small>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#behandlungen">Behandlungen</a>
+      <a href="#ueber-mich">Über mich</a>
+      <a href="#rezensionen">Das sagen Kundinnen</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a href="#kontakt" class="btn">Termin buchen</a>
+    <button class="burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0">
+    <div class="hero__text">
+      <p class="eyebrow">Signature Beauty · by Aylin Kaiser</p>
+      <h1>Glatte Haut.<br>Null Stoppeln.<br>Null Ausreden.</h1>
+      <p>Dein Rasierer kann in Rente gehen. Dauerhafte Haarentfernung und moderne Hautbehandlungen in Frankfurt – für Haut, die du einfach zeigst, statt sie zu verstecken.</p>
+      <div><a href="#kontakt" class="btn">Jetzt Termin buchen →</a></div>
+    </div>
+    <div class="hero__img ph" data-label="Bild: Hero – Beine / Haut im Sonnenlicht">
+      <div class="claim">SMOOTH.<br>ELEGANT.<br>PERFECT.</div>
+    </div>
+  </section>
+
+  <!-- USPs -->
+  <div class="usps">
+    <ul class="wrap">
+      <li><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z M2 9h20 M12 21 8 9l4-6 4 6z"/></svg>Sichtbare<br>Ergebnisse</li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 20c-4-3-6-6-6-10 2 0 4 1 6 4 2-3 4-4 6-4 0 4-2 7-6 10z M12 20V8 M12 8c-1-2-1-4 0-5 1 1 1 3 0 5"/></svg>Modernste<br>Technologie</li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg>Persönliche<br>Beratung</li>
+      <li><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z M13 8l-3 5h3l-2 4"/></svg>Sicher &amp;<br>professionell</li>
+    </ul>
+  </div>
+
+  <!-- BEHANDLUNGEN -->
+  <section id="behandlungen">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Unsere Behandlungen</p>
+        <h2>Für deine natürliche Schönheit</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="ph" data-label="Bild: Haarentfernung"></div>
+          <div class="card__body">
+            <h3>Dauerhafte Haarentfernung</h3>
+            <p>Seidig glatt – jeden Tag. Ohne Rasierer, ohne Wachs, ohne Drama.</p>
+            <!-- Unterseite folgt, sobald Inhalte da sind -->
+            <a href="haarentfernung.html" class="btn btn--soft">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" data-label="Bild: Hautverjüngung"></div>
+          <div class="card__body">
+            <h3>Hautverjüngung</h3>
+            <p>Ebenmäßig, frisch, strahlend. Deine Haut, nur ausgeschlafener.</p>
+            <a href="hautverjuengung.html" class="btn btn--soft">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" data-label="Bild: Carbon Peel"></div>
+          <div class="card__body">
+            <h3>Carbon Peel</h3>
+            <p>Reiner Teint, feine Poren. Der Reset-Knopf für dein Gesicht.</p>
+            <a href="carbon-peel.html" class="btn btn--soft">Mehr erfahren</a>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" data-label="Bild: IPL"></div>
+          <div class="card__body">
+            <h3>IPL Behandlungen</h3>
+            <p>Pigmentflecken und Rötungen? Wir machen ihnen höflich Beine.</p>
+            <a href="ipl.html" class="btn btn--soft">Mehr erfahren</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER MICH -->
+  <section id="ueber-mich" class="about">
+    <div class="about__text">
+      <p class="eyebrow">Über mich</p>
+      <h2>Moderne Technologie.<br>Ehrliche Beratung.<br>Ergebnisse, die man sieht.</h2>
+      <p>Ich bin Aylin – und ich finde, du hast Besseres zu tun, als dich jeden Morgen zu rasieren. Bei Kanzen bekommst du modernste Technik, eine Beratung ohne Verkaufsgelaber und ein Ergebnis, das bleibt.</p>
+      <div><a href="#kontakt" class="btn btn--light">Lern mich kennen →</a></div>
+    </div>
+    <div class="ph" data-label="Bild: Empfang / Studio mit Logo"></div>
+  </section>
+
+  <!-- MEHR ALS BEAUTY -->
+  <section class="more">
+    <div class="ph" data-label="Bild: Behandlungsraum"></div>
+    <div class="more__text">
+      <p class="eyebrow">Kanzen Signature Beauty</p>
+      <h2>Mehr als<br>Beauty.</h2>
+      <p>Höchste Qualität, ein exklusives Behandlungserlebnis und eine Atmosphäre, in der du kurz vergisst, dass gerade gelasert wird.</p>
+      <div><a href="#kontakt" class="btn">Jetzt Termin buchen →</a></div>
+    </div>
+    <div class="ph" data-label="Bild: Gutschein / Box mit Logo"></div>
+  </section>
+
+  <!-- REZENSIONEN -->
+  <section id="rezensionen" class="reviews">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Erfahrungen</p>
+        <h2>Das sagen unsere Kundinnen</h2>
+      </div>
+      <!-- GOOGLE-BEWERTUNGEN: hier das Widget-Snippet einfügen
+           (z. B. Trustindex, Elfsight o. ä.), sobald das Google-Unternehmensprofil steht.
+           Der Platzhalter-Block darunter wird dann komplett ersetzt. -->
+      <div class="widget-slot">
+        <p class="widget-note">Platzhalter – hier erscheinen die Google-Bewertungen (Widget), sobald das Unternehmensprofil live ist.</p>
+        <div class="review-grid" aria-hidden="true">
+          <div class="review"><span class="stars">★★★★★</span><div class="line"></div><div class="line"></div><div class="line s"></div></div>
+          <div class="review"><span class="stars">★★★★★</span><div class="line"></div><div class="line"></div><div class="line s"></div></div>
+          <div class="review"><span class="stars">★★★★★</span><div class="line"></div><div class="line"></div><div class="line s"></div></div>
+        </div>
+      </div>
+      <div class="cta"><a href="#kontakt" class="btn btn--soft">Überzeug dich selbst →</a></div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM: kommt später, sobald genug Posts da sind.
+  <section id="instagram">
+    <div class="wrap">
+      <div class="head"><p class="eyebrow">@kanzen</p><h2>Folg uns auf Instagram</h2></div>
+      Instagram-Feed-Widget hier einfügen
+    </div>
+  </section>
+  -->
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="contact">
+    <div class="wrap grid">
+      <div>
+        <p class="eyebrow">Kontakt</p>
+        <h2 style="margin-top:12px">Bereit für<br>glatte Tatsachen?</h2>
+        <p style="margin-top:18px;max-width:28em">Schreib mir oder ruf an – wir finden einen Termin, der in deinen Alltag passt. Die Erstberatung ist unverbindlich.</p>
+        <dl>
+          <div><dt>Adresse</dt><dd>Musterstraße 1, 60311 Frankfurt am Main</dd></div>
+          <div><dt>Telefon / WhatsApp</dt><dd><a href="tel:+49000000000">+49 000 000 000</a></dd></div>
+          <div><dt>E-Mail</dt><dd><a href="mailto:hallo@kanzen-frankfurt.de">hallo@kanzen-frankfurt.de</a></dd></div>
+          <div><dt>Öffnungszeiten</dt><dd>Nach Vereinbarung</dd></div>
+        </dl>
+        <div style="margin-top:30px"><a href="mailto:hallo@kanzen-frankfurt.de" class="btn">Termin anfragen →</a></div>
+      </div>
+      <div class="ph" data-label="Karte / Google Maps (nach Einwilligung laden)"></div>
+    </div>
+  </section>
+</main>
+
+<div class="trust">
+  <ul class="wrap">
+    <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Zentral in<br>Frankfurt</li>
+    <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Flexible<br>Termine</li>
+    <li><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Zufriedene<br>Kundinnen</li>
+    <li><svg viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Diskretion &amp;<br>Vertrauen</li>
+  </ul>
+</div>
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Kanzen Signature Beauty · Frankfurt am Main</span>
+    <nav><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+  </div>
+</footer>
+
+<!-- Mobile: feste Kontaktleiste (Nummer anpassen) -->
+<nav class="mobile-cta" aria-label="Schnellkontakt">
+  <a href="https://wa.me/49000000000" class="btn btn--soft">WhatsApp</a>
+  <a href="#kontakt" class="btn">Termin buchen</a>
+</nav>
+
+<!-- Farb-Switcher nur für die Abstimmung mit der Kundin – vor Livegang entfernen -->
+<div class="palette" role="group" aria-label="Farbvariante">
+  <span>Farbe</span>
+  <button data-p="nude" style="background:#b5735d" aria-pressed="true" title="Nude (wie Screenshot)"></button>
+  <button data-p="espresso" style="background:linear-gradient(135deg,#2a1d18 50%,#d9482b 50%)" aria-pressed="false" title="Espresso & Koralle"></button>
+  <button data-p="noir" style="background:linear-gradient(135deg,#151515 50%,#ddd5c8 50%)" aria-pressed="false" title="Schwarz & Sand"></button>
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  burger.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded', false);
+  }));
+
+  // aktiven Menüpunkt beim Scrollen markieren
+  const links = [...nav.querySelectorAll('a')];
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) links.forEach(l => l.classList.toggle('active', l.hash === '#' + e.target.id));
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach(l => { const s = document.querySelector(l.hash); if (s) io.observe(s); });
+
+  // Farb-Switcher
+  const btns = document.querySelectorAll('.palette button');
+  const setP = p => { document.body.dataset.palette = p; btns.forEach(b => b.setAttribute('aria-pressed', b.dataset.p === p)); };
+  btns.forEach(b => b.addEventListener('click', () => { setP(b.dataset.p); try { localStorage.setItem('kanzen-p', b.dataset.p); } catch (e) {} }));
+  try { const s = localStorage.getItem('kanzen-p'); if (s) setP(s); } catch (e) {}
+</script>
+</body>
+</html>

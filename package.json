@@ -1,0 +1,9 @@
+{
+  "name": "kanzen-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "npx --yes serve src"
+  }
+}
