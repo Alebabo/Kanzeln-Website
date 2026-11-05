@@ -213,6 +213,24 @@ details p{max-width:590px;margin:14px 30px 0 0;font-size:.84rem;line-height:1.8}
 @media(prefers-reduced-motion:reduce){
  *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+.values__inner{display:grid;grid-template-columns:.72fr 1.28fr;gap:7vw;align-items:center}
+.values__intro h2{color:var(--white);max-width:9ch;margin:0 0 20px}
+.values__intro p{max-width:270px;color:#d4c7bf;font-size:.88rem;line-height:1.8}
+.values-showcase{display:grid;grid-template-columns:.9fr 1.1fr;min-height:340px;background:#30251f;border:1px solid #665348}
+.values-showcase__visual{padding:28px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(145deg,#745443,#3c2d26);min-height:340px}
+.values-showcase__index{font:500 .65rem "DM Sans",sans-serif;letter-spacing:.16em;color:#e5d0c1}
+.values-showcase__word{font:400 clamp(2.5rem,4.8vw,5rem)/.95 var(--serif);color:#f8f0e9;letter-spacing:-.04em;overflow-wrap:anywhere}
+.values-showcase__content{padding:clamp(26px,4vw,54px);display:flex;flex-direction:column;justify-content:center}
+.values-showcase__content h3{font:400 clamp(1.5rem,2.4vw,2.35rem)/1.12 var(--serif);color:var(--white);margin:0 0 18px}
+.values-showcase__content p{font-size:.88rem;line-height:1.85;color:#d4c7bf;max-width:340px;min-height:6.5em;margin:0}
+.values-showcase__controls{margin-top:34px}
+.values-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.value-tab{border:1px solid #79675d;background:transparent;color:#e8dcd4;padding:10px 13px;font:500 .63rem "DM Sans",sans-serif;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.value-tab.is-active{background:#ead9cc;color:#2b211c;border-color:#ead9cc}
+.values-progress{height:2px;background:#665348;margin-top:22px;overflow:hidden}
+.values-progress span{display:block;width:0;height:100%;background:#e6c8b4}
+@media(max-width:760px){.values__inner{grid-template-columns:1fr;gap:28px}.values__intro h2{max-width:12ch}.values__intro p{margin-bottom:0}.values-showcase{grid-template-columns:1fr;min-height:0}.values-showcase__visual{min-height:190px;padding:20px}.values-showcase__word{font-size:3.4rem}.values-showcase__content{padding:26px 22px 24px}.values-showcase__content p{min-height:0}.values-showcase__controls{margin-top:26px}.values-tabs{gap:6px}.value-tab{padding:10px 11px}}
+@media(prefers-reduced-motion:reduce){.value-tab{transition:none}}
 </style>
 </head>
 <body>
@@ -305,12 +323,13 @@ details p{max-width:590px;margin:14px 30px 0 0;font-size:.84rem;line-height:1.8}
     </div>
   </section>
   <section class="section values">
-    <div class="wrap">
-      <h2>Aufmerksam im Detail. Klar in der Beratung.</h2>
-      <div class="values__grid">
-        <article class="value"><span class="value__no">01 — PERSÖNLICH</span><h3>Du stehst im Mittelpunkt.</h3><p>Wir sprechen zuerst über deine Wünsche. Gemeinsam finden wir heraus, welche Behandlung sinnvoll ist.</p></article>
-        <article class="value"><span class="value__no">02 — SORGFÄLTIG</span><h3>Keine Behandlung von der Stange.</h3><p>Deine Haut und dein Wohlbefinden geben den Rahmen vor – nicht ein festes Schema.</p></article>
-        <article class="value"><span class="value__no">03 — MODERN</span><h3>Technik mit Augenmaß.</h3><p>Moderne Geräte und eine verständliche Erklärung gehören für mich selbstverständlich dazu.</p></article>
+    <div class="wrap values__inner">
+      <div class="values__intro"><h2>So fühlt sich Kanzen an.</h2><p>Jede Behandlung beginnt damit, dass wir verstehen, was dir wichtig ist.</p></div>
+      <div class="values-showcase" id="values-showcase" aria-live="polite">
+        <div class="values-showcase__visual"><span class="values-showcase__index" id="value-index">01 / 03</span><div class="values-showcase__word" id="value-word">Persönlich</div></div>
+        <div class="values-showcase__content"><h3 id="value-title">Du stehst im Mittelpunkt.</h3><p id="value-copy">Wir sprechen zuerst über deine Wünsche. Gemeinsam finden wir heraus, welche Behandlung sinnvoll ist.</p>
+          <div class="values-showcase__controls"><div class="values-tabs" role="group" aria-label="Was Kanzen ausmacht"><button class="value-tab is-active" type="button" data-value="0" aria-pressed="true">Persönlich</button><button class="value-tab" type="button" data-value="1" aria-pressed="false">Sorgfältig</button><button class="value-tab" type="button" data-value="2" aria-pressed="false">Modern</button></div><div class="values-progress" aria-hidden="true"><span id="value-progress"></span></div></div>
+        </div>
       </div>
     </div>
   </section>
@@ -337,6 +356,32 @@ details p{max-width:590px;margin:14px 30px 0 0;font-size:.84rem;line-height:1.8}
 </footer>
 <script>
   document.getElementById('year').textContent=new Date().getFullYear();
+  const valueSlides=[
+    {word:"Persönlich",title:"Du stehst im Mittelpunkt.",copy:"Wir sprechen zuerst über deine Wünsche. Gemeinsam finden wir heraus, welche Behandlung sinnvoll ist."},
+    {word:"Sorgfältig",title:"Keine Behandlung von der Stange.",copy:"Deine Haut und dein Wohlbefinden geben den Rahmen vor – nicht ein festes Schema."},
+    {word:"Modern",title:"Technik mit Augenmaß.",copy:"Moderne Geräte und eine verständliche Erklärung gehören für mich selbstverständlich dazu."}
+  ];
+  const valueTabs=[...document.querySelectorAll('.value-tab')];
+  let activeValue=0, valueTimer;
+  function showValue(index){
+    activeValue=index;
+    const slide=valueSlides[index];
+    document.getElementById('value-index').textContent=String(index+1).padStart(2,'0')+' / 03';
+    document.getElementById('value-word').textContent=slide.word;
+    document.getElementById('value-title').textContent=slide.title;
+    document.getElementById('value-copy').textContent=slide.copy;
+    valueTabs.forEach((tab,i)=>{tab.classList.toggle('is-active',i===index);tab.setAttribute('aria-pressed',String(i===index))});
+    const progress=document.getElementById('value-progress');
+    progress.style.transition='none';progress.style.width='0';
+    requestAnimationFrame(()=>{progress.style.transition='width 6s linear';progress.style.width='100%'});
+  }
+  function restartValueTimer(){clearInterval(valueTimer);if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)valueTimer=setInterval(()=>showValue((activeValue+1)%valueSlides.length),6000)}
+  valueTabs.forEach((tab)=>tab.addEventListener('click',()=>{showValue(Number(tab.dataset.value));restartValueTimer()}));
+  const showcase=document.getElementById('values-showcase');
+  showcase.addEventListener('mouseenter',()=>clearInterval(valueTimer));
+  showcase.addEventListener('mouseleave',restartValueTimer);
+  showValue(0);restartValueTimer();
+
   const burger=document.getElementById('burger'),nav=document.getElementById('nav');
   burger.addEventListener('click',()=>{const open=nav.classList.toggle('open');burger.classList.toggle('open',open);burger.setAttribute('aria-expanded',String(open));burger.setAttribute('aria-label',open?'Menü schließen':'Menü öffnen')});
   nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Menü öffnen')}));
