@@ -91,23 +91,21 @@ h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: 0; }
 .hero__img { min-height: 380px; }
 .hero__img .claim { position: absolute; right: 40px; bottom: 60px; text-align: right; color: #fff; font-size: .78rem; letter-spacing: .3em; line-height: 2.2; z-index: 1; }
 
-/* ---------- Vorteile-Karussell ---------- */
-.usps { background: var(--surface); border-block: 1px solid var(--line); }
-.usp-carousel { min-height: 116px; display: flex; align-items: center; justify-content: center; gap: 24px; }
-.usp-track { position: relative; flex: 1; min-height: 116px; display: grid; place-items: center; }
-.usp-slide { grid-area: 1 / 1; width: 100%; text-align: center; font: 400 clamp(1.15rem, 2.2vw, 1.55rem)/1.2 "Cormorant Garamond", Georgia, serif; letter-spacing: .015em; opacity: 0; transform: translateY(7px); transition: opacity .45s ease, transform .45s ease; pointer-events: none; }
-.usp-slide.is-active { opacity: 1; transform: translateY(0); }
-.usp-controls { display: flex; align-items: center; gap: 12px; }
-.usp-arrow { width: 30px; height: 30px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--text); font: 300 1.2rem/1 "Jost", sans-serif; cursor: pointer; }
-.usp-dots { display: flex; align-items: center; gap: 6px; }
-.usp-dot { width: 6px; height: 6px; border: 0; border-radius: 50%; padding: 0; background: var(--line); cursor: pointer; }
-.usp-dot.is-active { background: var(--accent); }
+/* ---------- Laufendes Vorteile-Karussell ---------- */
+.usps { overflow: hidden; background: var(--surface); border-block: 1px solid var(--line); padding: 24px 0; }
+.usp-viewport { overflow: hidden; width: 100%; }
+.usp-track { display: flex; align-items: center; width: max-content; animation: usp-marquee 26s linear infinite; }
+.usp-group { display: flex; align-items: center; flex: none; }
+.usp-item { display: inline-flex; align-items: center; gap: 18px; padding: 0 38px; white-space: nowrap; color: var(--text); font: 400 clamp(1.1rem, 2vw, 1.45rem)/1.2 "Cormorant Garamond", Georgia, serif; }
+.usp-item::after { content: "✦"; color: var(--accent); font: 400 .85rem/1 "Jost", sans-serif; }
+.usps:hover .usp-track, .usps:focus-within .usp-track { animation-play-state: paused; }
+@keyframes usp-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (max-width: 600px) {
-  .usp-carousel { min-height: 94px; gap: 8px; }
-  .usp-track { min-height: 94px; }
-  .usp-controls { gap: 7px; }
-  .usp-arrow { width: 26px; height: 26px; }
-  .usp-dots { gap: 5px; }
+  .usps { padding: 20px 0; }
+  .usp-item { padding-inline: 24px; gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .usp-track { animation: none; }
 }
 
 /* ---------- Behandlungen ---------- */
@@ -255,24 +253,22 @@ footer nav { display: flex; gap: 22px; }
     </div>
   </section>
 
-  <!-- Vorteile-Karussell -->
+  <!-- Laufendes Vorteile-Karussell -->
   <div class="usps" aria-label="Das zeichnet Kanzen aus">
-    <div class="usp-carousel wrap">
-      <div class="usp-track" id="uspTrack" aria-live="off">
-        <div class="usp-slide is-active">Sichtbare Ergebnisse</div>
-        <div class="usp-slide">Modernste Technologie</div>
-        <div class="usp-slide">Persönliche Beratung</div>
-        <div class="usp-slide">Sicher &amp; professionell</div>
-      </div>
-      <div class="usp-controls" aria-label="Karussell-Steuerung">
-        <button class="usp-arrow" id="uspPrev" type="button" aria-label="Vorheriger Vorteil">‹</button>
-        <div class="usp-dots">
-          <button class="usp-dot is-active" type="button" aria-label="Vorteil 1 anzeigen" aria-current="true"></button>
-          <button class="usp-dot" type="button" aria-label="Vorteil 2 anzeigen"></button>
-          <button class="usp-dot" type="button" aria-label="Vorteil 3 anzeigen"></button>
-          <button class="usp-dot" type="button" aria-label="Vorteil 4 anzeigen"></button>
+    <div class="usp-viewport">
+      <div class="usp-track">
+        <div class="usp-group">
+          <span class="usp-item">Sichtbare Ergebnisse</span>
+          <span class="usp-item">Modernste Technologie</span>
+          <span class="usp-item">Persönliche Beratung</span>
+          <span class="usp-item">Sicher &amp; professionell</span>
         </div>
-        <button class="usp-arrow" id="uspNext" type="button" aria-label="Nächster Vorteil">›</button>
+        <div class="usp-group" aria-hidden="true">
+          <span class="usp-item">Sichtbare Ergebnisse</span>
+          <span class="usp-item">Modernste Technologie</span>
+          <span class="usp-item">Persönliche Beratung</span>
+          <span class="usp-item">Sicher &amp; professionell</span>
+        </div>
       </div>
     </div>
   </div>
@@ -408,35 +404,6 @@ footer nav { display: flex; gap: 22px; }
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     nav.classList.remove('open'); burger.classList.remove('open'); burger.setAttribute('aria-expanded', false);
   }));
-
-  // Vorteile-Karussell
-  const uspSlides = [...document.querySelectorAll('.usp-slide')];
-  const uspDots = [...document.querySelectorAll('.usp-dot')];
-  const uspPrev = document.getElementById('uspPrev');
-  const uspNext = document.getElementById('uspNext');
-  let uspIndex = 0;
-  let uspTimer;
-  const showUsp = index => {
-    uspIndex = (index + uspSlides.length) % uspSlides.length;
-    uspSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === uspIndex));
-    uspDots.forEach((dot, i) => {
-      dot.classList.toggle('is-active', i === uspIndex);
-      if (i === uspIndex) dot.setAttribute('aria-current', 'true');
-      else dot.removeAttribute('aria-current');
-    });
-  };
-  const restartUsp = () => {
-    clearInterval(uspTimer);
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      uspTimer = setInterval(() => showUsp(uspIndex + 1), 3500);
-    }
-  };
-  uspPrev.addEventListener('click', () => { showUsp(uspIndex - 1); restartUsp(); });
-  uspNext.addEventListener('click', () => { showUsp(uspIndex + 1); restartUsp(); });
-  uspDots.forEach((dot, i) => dot.addEventListener('click', () => { showUsp(i); restartUsp(); }));
-  document.querySelector('.usp-carousel').addEventListener('mouseenter', () => clearInterval(uspTimer));
-  document.querySelector('.usp-carousel').addEventListener('mouseleave', restartUsp);
-  restartUsp();
 
   // aktiven Menüpunkt beim Scrollen markieren
   const links = [...nav.querySelectorAll('a')];
