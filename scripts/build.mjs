@@ -3,7 +3,8 @@ import { gzipSync } from 'zlib';
 const { subtle, getRandomValues } = globalThis.crypto;
 const html = readFileSync(new URL('../src/index.html', import.meta.url));
 const data = gzipSync(html, { level: 9 });
-const pw = process.env.SITE_PASSWORD || 'tma123', iter = 250000;
+const pw = process.env.SITE_PASSWORD, iter = 250000;
+if (!pw) { console.error('SITE_PASSWORD fehlt (in Vercel unter Environment Variables setzen).'); process.exit(1); }
 const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
 const base = await subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
 const key = await subtle.deriveKey({ name: 'PBKDF2', salt, iterations: iter, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['encrypt']);
