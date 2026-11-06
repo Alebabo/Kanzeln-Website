@@ -583,6 +583,26 @@ html,body{overscroll-behavior:none;overflow-x:clip}
   .reviews__grid .g-card{flex:0 0 84%;scroll-snap-align:start}
   .reviews__summary{margin-top:16px}
 }
+
+/* Hero-Rezension kompakt: nur Name, Sterne, eine Zeile Text */
+.hero-review{width:270px}
+.hero-review .g-card{padding:10px 12px 11px;border-radius:10px}
+.hero-review .g-avatar{flex-basis:26px;height:26px;font-size:12px}
+.hero-review .g-name{font-size:12.5px}
+.hero-review .g-meta{display:none}
+.hero-review .g-row{margin:5px 0 2px;gap:6px}
+.hero-review .g-stars{font-size:12px}
+.hero-review .g-date{font-size:11px}
+.hero-review .g-text{font-size:12px;line-height:1.4;-webkit-line-clamp:1;display:-webkit-box}
+.hero-review .g-tag{font-size:9px;padding:0 5px}
+.hero-review .g-logo{width:15px;height:15px;flex-basis:15px}
+.hero-review__dots{margin-top:7px}
+@media (max-width:760px){
+  .hero-review{left:20px;right:auto;width:min(260px,calc(100% - 40px))}
+  .hero-review .g-card{padding:9px 11px 10px}
+  .hero-review .g-text{-webkit-line-clamp:1}
+  .hero-review__dots{justify-content:flex-start;padding-left:4px}
+}
 </style>
 </head>
 <body>
