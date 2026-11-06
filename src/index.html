@@ -574,7 +574,6 @@ html,body{overscroll-behavior:none;overflow-x:clip}
 .reviews__summary b{font:500 28px/1 Roboto,Arial,sans-serif;color:var(--ink)}
 .reviews__summary .g-stars{font-size:18px}
 .reviews__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-@media (min-width:901px){.reviews__grid .g-card:nth-child(n+4){display:none}}
 .reviews__grid .g-card{padding:18px 20px 20px}
 .reviews__grid .g-text{-webkit-line-clamp:6}
 .reviews__more{margin-top:32px}
@@ -621,6 +620,17 @@ html,body{overscroll-behavior:none;overflow-x:clip}
 /* Hero-Rezension zentriert */
 .hero-review{left:50%!important;right:auto!important;top:140px!important;bottom:auto!important;transform:translateX(-50%);width:290px!important}
 @media (max-width:760px){.hero-review{top:112px!important;width:min(270px,calc(100% - 40px))!important}}
+
+/* Rezensionen: 3 sichtbar, Rest hinter "Mehr anzeigen" */
+.reviews__grid:not(.is-expanded) .g-card:nth-child(n+4){display:none!important}
+.reviews__grid .g-card.is-revealed{animation:gReveal .6s cubic-bezier(.4,0,.2,1) both}
+@keyframes gReveal{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.reviews__actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin-top:28px}
+.reviews__actions .reviews__more{margin-top:0}
+.reviews__toggle{font:600 .68rem/1 "DM Sans",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);background:rgba(255,250,245,.6);border:1px solid var(--line);border-radius:999px;padding:13px 22px;cursor:pointer;transition:background .25s ease,border-color .25s ease}
+.reviews__toggle:hover{background:#fff;border-color:#cbb7a9}
+@media (max-width:640px){.reviews__toggle{width:100%}}
+@media (prefers-reduced-motion:reduce){.reviews__grid .g-card.is-revealed{animation:none}}
 </style>
 </head>
 <body>
@@ -725,7 +735,10 @@ html,body{overscroll-behavior:none;overflow-x:clip}
         <div class="reviews__summary" id="reviews-summary"></div>
       </div>
       <div class="reviews__grid" id="reviews-grid"></div>
-      <a class="text-link reviews__more" id="reviews-more" href="#" target="_blank" rel="noopener" hidden>Alle Rezensionen auf Google</a>
+      <div class="reviews__actions">
+        <button type="button" class="reviews__toggle" id="reviews-toggle" aria-expanded="false" aria-controls="reviews-grid" hidden>Mehr anzeigen</button>
+        <a class="text-link reviews__more" id="reviews-more" href="#" target="_blank" rel="noopener" hidden>Alle Rezensionen auf Google</a>
+      </div>
     </div>
   </section>
   <section class="section" id="kontakt">
@@ -803,6 +816,18 @@ html,body{overscroll-behavior:none;overflow-x:clip}
     const sum=document.getElementById('reviews-summary');
     sum.innerHTML=GOOGLE_RATING?'<b>'+String(GOOGLE_RATING.score).replace('.',',')+'</b>'+starsHtml(GOOGLE_RATING.score)+'<span>'+GOOGLE_RATING.count+' Google-Rezensionen</span>':'<span>Google-Rezensionen</span>';
     if(GOOGLE_PROFILE_URL){const m=document.getElementById('reviews-more');m.href=GOOGLE_PROFILE_URL;m.hidden=false}
+    const tgl=document.getElementById('reviews-toggle'), VISIBLE=3;
+    if(REVIEWS.length>VISIBLE){
+      const rest=REVIEWS.length-VISIBLE;
+      tgl.textContent='Mehr anzeigen ('+rest+')';tgl.hidden=false;
+      tgl.addEventListener('click',()=>{
+        const open=grid.classList.toggle('is-expanded');
+        tgl.setAttribute('aria-expanded',String(open));
+        tgl.textContent=open?'Weniger anzeigen':'Mehr anzeigen ('+rest+')';
+        [...grid.children].slice(VISIBLE).forEach(c=>c.classList.toggle('is-revealed',open));
+        if(!open)reviewsSec.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    }
   }
 
   // Hero-Karte, wechselt alle 5 s
