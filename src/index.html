@@ -574,6 +574,7 @@ html,body{overscroll-behavior:none;overflow-x:clip}
 .reviews__summary b{font:500 28px/1 Roboto,Arial,sans-serif;color:var(--ink)}
 .reviews__summary .g-stars{font-size:18px}
 .reviews__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media (min-width:901px){.reviews__grid .g-card:nth-child(n+4){display:none}}
 .reviews__grid .g-card{padding:18px 20px 20px}
 .reviews__grid .g-text{-webkit-line-clamp:6}
 .reviews__more{margin-top:32px}
@@ -762,9 +763,11 @@ html,body{overscroll-behavior:none;overflow-x:clip}
   const GOOGLE_PROFILE_URL = null;          // z. B. "https://g.page/r/XXXX/review"
   const GOOGLE_RATING = null;               // z. B. { score: 4.9, count: 37 }
   const REVIEWS = [
-    { name:"Name Kundin 1", stars:5, date:"vor 1 Woche",  text:"Platzhalter – hier steht später eine echte Google-Rezension von Kundin 1.", placeholder:true },
-    { name:"Name Kundin 2", stars:5, date:"vor 3 Wochen", text:"Platzhalter – hier steht später eine echte Google-Rezension von Kundin 2.", placeholder:true },
-    { name:"Name Kundin 3", stars:5, date:"vor 1 Monat",  text:"Platzhalter – hier steht später eine echte Google-Rezension von Kundin 3.", placeholder:true }
+    { name:"Testkundin A", stars:5, date:"vor 2 Tagen",   placeholder:true, text:"Testtext (kurz): Hier steht später eine echte Rezension aus dem Google-Profil." },
+    { name:"Testkundin B", stars:5, date:"vor 1 Woche",   placeholder:true, text:"Testtext (mittel): Dieser Platzhalter hat ungefähr die Länge einer typischen Google-Rezension. Er dient nur dazu, Umbruch, Zeilenhöhe und Kürzung der Karte zu prüfen, und wird vor dem Launch ersetzt." },
+    { name:"Testkundin C", stars:4, date:"vor 3 Wochen",  placeholder:true, text:"Testtext (4 Sterne): Prüft die Darstellung einer Bewertung mit weniger als fünf Sternen." },
+    { name:"Testkunde D",  stars:5, date:"vor 1 Monat",   placeholder:true, text:"Testtext (lang): Ein bewusst langer Platzhalter, um zu sehen, wie die Karte mit ausführlichen Rezensionen umgeht. Im Abschnitt wird nach sechs Zeilen gekürzt, in der Hero-Karte schon nach einer Zeile. Längere echte Texte werden genauso behandelt, damit alle Karten gleich hoch bleiben und das Raster ruhig wirkt." },
+    { name:"Testkundin E", stars:5, date:"vor 2 Monaten", placeholder:true, text:"Testtext (kurz): Fünfte Karte, prüft das seitliche Wischen auf dem Handy." }
   ];
   // Offizielles Google-G als Datei ablegen: public/assets/google-g.svg (aus Googles Brand-Ressourcen).
   // Fehlt die Datei, wird nichts angezeigt.
@@ -772,7 +775,7 @@ html,body{overscroll-behavior:none;overflow-x:clip}
   const G_COLORS=['#1a73e8','#d93025','#188038','#e37400','#9334e6','#12b5cb'];
   const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const starsHtml=n=>{const f=Math.round(n);return '<span class="g-stars" aria-label="'+n+' von 5 Sternen">'+'★'.repeat(f)+'<span class="off">'+'★'.repeat(5-f)+'</span></span>'};
-  const cardHtml=(r,i)=>'<div class="g-card__top"><span class="g-avatar" style="background:'+G_COLORS[i%G_COLORS.length]+'" aria-hidden="true">'+esc(r.name.trim()[0]||'?')+'</span><div><div class="g-name">'+esc(r.name)+(r.placeholder?'<span class="g-tag">Platzhalter</span>':'')+'</div><div class="g-meta">Google-Rezension</div></div>'+G_LOGO+'</div>'
+  const cardHtml=(r,i)=>'<div class="g-card__top"><span class="g-avatar" style="background:'+G_COLORS[i%G_COLORS.length]+'" aria-hidden="true">'+esc(r.name.trim()[0]||'?')+'</span><div><div class="g-name">'+esc(r.name)+(r.placeholder?'<span class="g-tag">Test</span>':'')+'</div><div class="g-meta">Google-Rezension</div></div>'+G_LOGO+'</div>'
     +'<div class="g-row">'+starsHtml(r.stars)+'<span class="g-date">'+esc(r.date)+'</span></div><p class="g-text">'+esc(r.text)+'</p>';
 
   // Abschnitt
