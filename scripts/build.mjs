@@ -25,8 +25,7 @@ body { display: flex; align-items: center; justify-content: center; background: 
 main { display: grid; justify-items: center; gap: 24px; width: 100%; max-width: 360px; }
 h1 { margin: 0; font-size: clamp(2rem, 8vw, 5rem); font-weight: 600; letter-spacing: -0.02em; text-align: center;
   cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent; white-space: nowrap; }
-form { display: none; width: 100%; gap: 8px; }
-form.open { display: flex; }
+form { display: flex; width: 100%; gap: 8px; }
 input { flex: 1; min-width: 0; font: inherit; font-size: 16px; padding: 12px 14px; border-radius: 10px;
   border: 1px solid color-mix(in srgb, CanvasText 25%, transparent); background: Canvas; color: CanvasText; }
 button { font: inherit; font-size: 16px; padding: 12px 16px; border-radius: 10px; border: 0; cursor: pointer;
@@ -55,7 +54,7 @@ async function unlock(pw) {
   document.open(); document.write(html); document.close();
 }
 const f = document.getElementById('f'), pw = document.getElementById('pw');
-document.getElementById('cs').addEventListener('click', () => { f.classList.add('open'); pw.focus(); });
+document.getElementById('cs').addEventListener('click', () => pw.focus());
 f.addEventListener('submit', async e => {
   e.preventDefault(); f.classList.remove('bad');
   try { await unlock(pw.value); try { localStorage.setItem('k-pw', pw.value); } catch (_) {} }
