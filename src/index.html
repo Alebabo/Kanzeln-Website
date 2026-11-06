@@ -604,6 +604,23 @@ html,body{overscroll-behavior:none;overflow-x:clip}
   .hero-review .g-text{-webkit-line-clamp:1}
   .hero-review__dots{justify-content:flex-start;padding-left:4px}
 }
+
+/* Hero-Rezension: Crossfade, keine Punkte */
+.hero-review__dots{display:none!important}
+.hero-review__stack{display:grid}
+.hero-review__stack>.g-card{grid-area:1/1;opacity:0;transform:translateY(4px) scale(.985);filter:blur(2px);transition:opacity 1.1s cubic-bezier(.4,0,.2,1),transform 1.1s cubic-bezier(.4,0,.2,1),filter 1.1s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.hero-review__stack>.g-card.is-on{opacity:1;transform:none;filter:none;pointer-events:auto}
+@media (prefers-reduced-motion:reduce){.hero-review__stack>.g-card{transition:none}}
+
+/* Rezensionen-Abschnitt: Handy untereinander, Laptop Raster, kein Seitwärts-Scroll */
+.reviews__grid{display:grid!important;grid-template-columns:repeat(3,1fr);gap:20px;overflow:visible!important;margin:0!important;padding:0!important}
+.reviews__grid .g-card{display:block!important;flex:none!important}
+@media (max-width:1100px){.reviews__grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.reviews__grid{grid-template-columns:1fr;gap:12px}.reviews__grid .g-text{-webkit-line-clamp:4}}
+
+/* Hero-Rezension zentriert */
+.hero-review{left:50%!important;right:auto!important;top:140px!important;bottom:auto!important;transform:translateX(-50%);width:290px!important}
+@media (max-width:760px){.hero-review{top:112px!important;width:min(270px,calc(100% - 40px))!important}}
 </style>
 </head>
 <body>
@@ -792,19 +809,17 @@ html,body{overscroll-behavior:none;overflow-x:clip}
   const heroBox=document.getElementById('hero-review');
   if(!REVIEWS.length){heroBox.hidden=true}
   else{
-    heroBox.innerHTML='<div class="g-card" id="hero-review-card"></div>'+(REVIEWS.length>1?'<div class="hero-review__dots">'+REVIEWS.map((_,i)=>'<button type="button" aria-label="Rezension '+(i+1)+'"></button>').join('')+'</div>':'');
-    const card=document.getElementById('hero-review-card'), dots=[...heroBox.querySelectorAll('.hero-review__dots button')];
-    let hi=0, ht;
+    // Zwei übereinanderliegende Karten -> weiches Überblenden (Crossfade)
+    heroBox.innerHTML='<div class="hero-review__stack"><div class="g-card is-on"></div><div class="g-card"></div></div>';
+    const layers=[...heroBox.querySelectorAll('.g-card')];
+    let hi=0, front=0, ht;
     const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const render=i=>{hi=i;card.innerHTML=cardHtml(REVIEWS[i],i);dots.forEach((d,j)=>d.classList.toggle('is-active',j===i))};
-    const go=i=>{if(reduce){render(i);return}card.classList.add('is-out');setTimeout(()=>{render(i);card.classList.remove('is-out')},450)};
-    const start=()=>{clearInterval(ht);if(REVIEWS.length>1&&!reduce)ht=setInterval(()=>go((hi+1)%REVIEWS.length),5000)};
-    dots.forEach((d,i)=>d.addEventListener('click',()=>{go(i);start()}));
+    layers[0].innerHTML=cardHtml(REVIEWS[0],0);
+    const go=i=>{const back=1-front;layers[back].innerHTML=cardHtml(REVIEWS[i],i);layers[back].classList.add('is-on');layers[front].classList.remove('is-on');front=back;hi=i};
+    const start=()=>{clearInterval(ht);if(REVIEWS.length>1&&!reduce)ht=setInterval(()=>go((hi+1)%REVIEWS.length),5500)};
     heroBox.addEventListener('mouseenter',()=>clearInterval(ht));
     heroBox.addEventListener('mouseleave',start);
-    heroBox.addEventListener('focusin',()=>clearInterval(ht));
-    heroBox.addEventListener('focusout',start);
-    render(0);start();
+    start();
   }
 </script>
 </body>
