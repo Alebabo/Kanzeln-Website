@@ -39,4 +39,5 @@ Nach jeder Änderung an `src/index.html` **immer `npm run build` ausführen** un
 - [ ] Unterseiten der Behandlungen (Links laufen aktuell ins Leere)
 - [ ] Farb-Switcher entfernen, sobald die Palette steht
 - [ ] Google-Bewertungs-Widget
+- [x] Schriften lokal gehostet (`public/assets/fonts`), keine Verbindung zu Google Fonts
 - [ ] Beim Launch: Passwortschutz entfernen (`src/index.html` direkt als `public/index.html`) und `noindex` raus
