@@ -23,7 +23,7 @@
 <meta property="og:image:height" content="1067">
 <meta property="og:image:alt" content="Behandlungsraum im Kanzen Studio in Frankfurt">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" as="image" href="/assets/studio-room-hero.webp" imagesrcset="/assets/studio-room.webp 1600w, /assets/studio-room-hero.webp 3072w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/hero-behandlungsraum.webp" imagesrcset="/assets/hero-behandlungsraum-1600.webp 1600w, /assets/hero-behandlungsraum.webp 3072w" imagesizes="100vw" fetchpriority="high">
 <!-- Strukturierte Daten für Google (lokale Suche). Nach Rücklauf des Fragebogens ergänzen:
      "telephone", "openingHoursSpecification", "priceRange", "sameAs" (Instagram usw.), "logo".
      FAQPage wird automatisch aus den <details> generiert – bei FAQ-Änderungen hier mit anpassen. -->
@@ -725,7 +725,8 @@ html{scroll-padding-top:112px}
 /* Kein Gummiband-/Pull-Scroll, kein seitliches Verschieben */
 html,body{overscroll-behavior:none;overflow-x:clip}
 /* Hero: hochaufgeloeste Version (3072px) */
-.hero__image.photo--room{--photo:url('/assets/studio-room-hero.webp')}
+/* Hero-Foto: Unsplash-Lizenz – hero-behandlungsraum.webp (photo-1665231795856, unsplash.com/photos/-i6kaig732w) */
+.hero__image.photo--room{--photo:url('/assets/hero-behandlungsraum.webp');--pos:50% 60%}
 
 /* FAQ: alte Listen-Trennlinien entfernen (Karten-Design) */
 .faq-list{border-top:0!important}
@@ -935,7 +936,7 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
         <a class="text-link" href="#behandlungen">Behandlungen entdecken</a>
       </div>
     </div>
-    <div class="hero__image photo photo--room"><img class="photo__img" src="/assets/studio-room-hero.webp" srcset="/assets/studio-room.webp 1600w, /assets/studio-room-hero.webp 3072w" sizes="100vw" alt="Behandlungsraum im Kanzen Laserstudio in Frankfurt mit moderner Behandlungsliege" width="3072" height="2048" fetchpriority="high" decoding="async">
+    <div class="hero__image photo photo--room"><img class="photo__img" src="/assets/hero-behandlungsraum.webp" srcset="/assets/hero-behandlungsraum-1600.webp 1600w, /assets/hero-behandlungsraum.webp 3072w" sizes="100vw" alt="Ruhiger Behandlungsraum mit Behandlungsliege, Holzregal und warmem Licht" width="3072" height="2044" fetchpriority="high" decoding="async">
       <div class="hero__caption">Kanzen</div>
     </div>
     <div class="hero-review" id="hero-review" aria-live="polite" aria-label="Google-Rezensionen"></div>
