@@ -68,3 +68,8 @@ try { const s = localStorage.getItem('k-pw'); if (s) unlock(s).catch(() => { try
 `;
 writeFileSync(new URL('../public/index.html', import.meta.url), page);
 console.log(page.length);
+
+// Rechtstexte unverschlüsselt ausliefern (Impressum muss immer erreichbar sein)
+import { copyFileSync } from 'fs';
+for (const f of ['impressum.html', 'datenschutz.html', 'legal.css'])
+  copyFileSync(new URL('../src/' + f, import.meta.url), new URL('../public/' + f, import.meta.url));

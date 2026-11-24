@@ -9,6 +9,7 @@ Live: https://kanzen-aesthetics.de (Vercel-Projekt `coming-soon`)
 |---|---|
 | `src/index.html` | **Hier wird gearbeitet.** Die eigentliche Website (HTML/CSS/JS in einer Datei). |
 | `scripts/build.mjs` | Verschlüsselt `src/index.html` und erzeugt die passwortgeschützte Coming-Soon-Seite. |
+| `src/impressum.html`, `src/datenschutz.html`, `src/legal.css` | Rechtstexte – werden beim Build unverschlüsselt nach `public/` kopiert. |
 | `public/index.html` | Build-Ergebnis – wird deployed. Nicht von Hand bearbeiten. |
 
 ## Passwortschutz
@@ -32,12 +33,12 @@ Nach jeder Änderung an `src/index.html` **immer `npm run build` ausführen** un
 
 ## Offene Punkte vor Launch
 
-- [ ] Echte Telefonnummer / WhatsApp (`tel:` und `wa.me`-Link), Adresse
-- [ ] Fotos statt Platzhalter (`.ph`-Divs durch `<img>` ersetzen)
+- [ ] Telefonnummer, E-Mail, Adresse im Skript unter `CONTACT` eintragen (Buttons erscheinen automatisch)
+- [x] Fotos für alle drei Behandlungen (Carbon Peel & Microneedling: Unsplash-Lizenz)
+- [ ] Eigene Studio-/Behandlungsfotos, sobald vorhanden
 - [ ] Logo-Datei
-- [ ] Impressum & Datenschutz (Pflicht!)
-- [ ] Unterseiten der Behandlungen (Links laufen aktuell ins Leere)
-- [ ] Farb-Switcher entfernen, sobald die Palette steht
-- [ ] Google-Bewertungs-Widget
+- [ ] Impressum & Datenschutz: Entwürfe in `src/impressum.html` / `src/datenschutz.html` – [Platzhalter] füllen und prüfen lassen
+- [x] „Mehr erfahren“ öffnet die passende FAQ-Antwort (Unterseiten optional später)
+- [ ] Echte Google-Rezensionen eintragen (`REVIEWS`, `GOOGLE_RATING`, `GOOGLE_PROFILE_URL`) – Testeinträge entfernen
 - [x] Schriften lokal gehostet (`public/assets/fonts`), keine Verbindung zu Google Fonts
 - [ ] Beim Launch: Passwortschutz entfernen (`src/index.html` direkt als `public/index.html`) und `noindex` raus

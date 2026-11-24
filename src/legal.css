@@ -1,0 +1,10 @@
+@font-face{font-family:'Manrope';font-weight:200 800;font-display:swap;src:url('/assets/fonts/manrope-latin-wght-normal.woff2') format('woff2')}
+@font-face{font-family:'Playfair Display';font-weight:400 900;font-display:swap;src:url('/assets/fonts/playfair-display-latin-wght-normal.woff2') format('woff2')}
+*{box-sizing:border-box}
+body{margin:0;background:#f5efe9;color:#2b0a10;font:400 16px/1.75 "Manrope",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.legal{width:min(760px,calc(100% - 40px));margin:0 auto;padding:56px 0 96px}
+.back{display:inline-block;margin-bottom:40px;color:#4e111c;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid #cfaea6}
+h1{font:400 clamp(2.4rem,6vw,3.6rem)/1.05 "Playfair Display",Georgia,serif;letter-spacing:-.03em;color:#4e111c;margin:0 0 36px}
+h2{font:600 .95rem/1.4 "Manrope",Arial,sans-serif;margin:34px 0 8px}
+p{margin:0 0 12px;color:#644a4d}
+.stand{margin-top:40px;font-size:.85rem}
