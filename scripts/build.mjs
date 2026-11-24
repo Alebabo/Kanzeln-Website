@@ -71,5 +71,5 @@ console.log(page.length);
 
 // Rechtstexte unverschlüsselt ausliefern (Impressum muss immer erreichbar sein)
 import { copyFileSync } from 'fs';
-for (const f of ['impressum.html', 'datenschutz.html', 'legal.css'])
+for (const f of ['impressum.html', 'datenschutz.html', 'legal.css', 'robots.txt', 'sitemap.xml'])
   copyFileSync(new URL('../src/' + f, import.meta.url), new URL('../public/' + f, import.meta.url));
