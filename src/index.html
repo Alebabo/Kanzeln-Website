@@ -23,7 +23,7 @@
 <meta property="og:image:height" content="1067">
 <meta property="og:image:alt" content="Behandlungsraum im Kanzen Studio in Frankfurt">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="preload" href="/assets/studio-room-hero.webp" as="image" fetchpriority="high">
+<link rel="preload" as="image" href="/assets/studio-room-hero.webp" imagesrcset="/assets/studio-room.webp 1600w, /assets/studio-room-hero.webp 3072w" imagesizes="100vw" fetchpriority="high">
 <!-- Strukturierte Daten für Google (lokale Suche). Nach Rücklauf des Fragebogens ergänzen:
      "telephone", "openingHoursSpecification", "priceRange", "sameAs" (Instagram usw.), "logo".
      FAQPage wird automatisch aus den <details> generiert – bei FAQ-Änderungen hier mit anpassen. -->
@@ -887,6 +887,17 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
 .contact-list a{border-bottom:1px solid var(--rose)}
 .contact-card .contact__actions{margin-top:26px}
 @media(max-width:760px){.contact-card{grid-template-columns:1fr;margin-top:48px;border-radius:20px;padding:26px 22px}.contact-card .contact__actions .btn{flex:1 1 140px}}
+
+/* ===== SEO: Fotos als echte <img> (Google-Bildersuche, Alt-Texte) statt CSS-Hintergrund ===== */
+.photo{background-image:none!important}
+.photo:not(.hero__image){position:relative}
+.photo__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);display:block;z-index:0}
+.hero__image:before{z-index:1;background:linear-gradient(90deg,rgba(43,10,16,.56),rgba(43,10,16,.23) 52%,rgba(43,10,16,.06)),linear-gradient(0deg,rgba(43,10,16,.25),transparent 55%)}
+.hero__image:after,.hero__caption,.service__number{z-index:2}
+/* H1: Suchbegriff als kleine Zeile über dem Markennamen */
+.hero__kicker{display:block;margin-bottom:14px;font:600 .72rem/1.5 "DM Sans",sans-serif;letter-spacing:.19em;text-transform:uppercase;color:rgba(245,239,233,.92);text-shadow:0 2px 12px rgba(43,10,16,.35)}
+.hero__kicker{white-space:nowrap}
+@media(max-width:700px){.hero__kicker{font-size:.62rem;margin-bottom:10px}}
 </style>
 </head>
 <body>
@@ -917,14 +928,14 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
 <main id="top">
   <section class="hero">
     <div class="hero__copy">
-      <h1>Kanzen – Laserstudio</h1>
+      <h1><span class="hero__kicker">Laser-Haarentfernung in Frankfurt</span> <span class="hero__brand">Kanzen – Laserstudio</span></h1>
       <p>Moderne Laser-Haarentfernung und ausgewählte Hautbehandlungen – persönlich begleitet, sorgfältig durchgeführt und in ruhiger Studioatmosphäre.</p>
       <div class="hero__actions">
         <a class="btn" href="#termin">Termin anfragen <span aria-hidden="true"></span></a>
         <a class="text-link" href="#behandlungen">Behandlungen entdecken</a>
       </div>
     </div>
-    <div class="hero__image photo photo--room" role="img" aria-label="Einblick in das Kanzen Beauty Studio mit moderner Behandlungsliege">
+    <div class="hero__image photo photo--room"><img class="photo__img" src="/assets/studio-room-hero.webp" srcset="/assets/studio-room.webp 1600w, /assets/studio-room-hero.webp 3072w" sizes="100vw" alt="Behandlungsraum im Kanzen Laserstudio in Frankfurt mit moderner Behandlungsliege" width="3072" height="2048" fetchpriority="high" decoding="async">
       <div class="hero__caption">Kanzen</div>
     </div>
     <div class="hero-review" id="hero-review" aria-live="polite" aria-label="Google-Rezensionen"></div>
@@ -937,22 +948,22 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
       </div>
       <div class="services">
         <article class="service">
-          <div class="service__photo photo photo--laserleg" role="img" aria-label="Laser-Haarentfernung am Bein mit dem Handstück"><span class="service__number">01 / 03</span></div>
+          <div class="service__photo photo photo--laserleg"><img class="photo__img" src="/assets/laser-haarentfernung.webp" alt="Laser-Haarentfernung am Bein mit dem Laser-Handstück" width="1200" height="1500" loading="lazy" decoding="async"><span class="service__number">01 / 03</span></div>
           <div class="service__body"><h3>Laser-Haarentfernung</h3><p>Für ein langanhaltend glattes Hautgefühl – Zone für Zone auf deine Haut und dein Haar abgestimmt.</p><a class="service__link" href="#faq-laser">Mehr erfahren <span></span></a></div>
         </article>
         <article class="service">
-          <div class="service__photo photo photo--carbon" role="img" aria-label="Auftragen der Carbon-Maske vor dem Carbon Peel"><span class="service__number">02 / 03</span></div>
+          <div class="service__photo photo photo--carbon"><img class="photo__img" src="/assets/carbon-peel.webp" alt="Auftragen der Carbon-Maske vor dem Carbon Peel (Laser-Peeling)" width="1600" height="1067" loading="lazy" decoding="async"><span class="service__number">02 / 03</span></div>
           <div class="service__body"><h3>Carbon Peel</h3><p>Carbon-Maske und Laser für ein klarer und feiner wirkendes Hautbild – der Frische-Moment für dein Gesicht.</p><a class="service__link" href="#faq-carbon">Mehr erfahren <span></span></a></div>
         </article>
         <article class="service">
-          <div class="service__photo photo photo--needling" role="img" aria-label="Pflegende Maske nach der Gesichtsbehandlung"><span class="service__number">03 / 03</span></div>
+          <div class="service__photo photo photo--needling"><img class="photo__img" src="/assets/microneedling.webp" alt="Pflegende Maske nach einer Microneedling-Gesichtsbehandlung" width="1200" height="1800" loading="lazy" decoding="async"><span class="service__number">03 / 03</span></div>
           <div class="service__body"><h3>Microneedling</h3><p>Feinste Mikroimpulse, die die hauteigene Erneuerung anregen – für ein ebenmäßiger wirkendes Hautbild.</p><a class="service__link" href="#faq-needling">Mehr erfahren <span></span></a></div>
         </article>
       </div>
     </div>
   </section>
   <section class="about" id="ueber-mich">
-    <div class="about__image photo photo--detail" role="img" aria-label="Persönliche Gesichtsbehandlung mit dem Laser-Handstück"></div>
+    <div class="about__image photo photo--detail"><img class="photo__img" src="/assets/face-treatment.webp" alt="Persönliche Gesichtsbehandlung mit dem Laser-Handstück bei Kanzen" width="1536" height="1024" loading="lazy" decoding="async"></div>
     <div class="about__copy">
       <h2>Deine Haut. Deine Wünsche. Meine Aufmerksamkeit.</h2>
       <p>Ich bin Aylin Kaiser. Bei Kanzen geht es nicht um schnelle Versprechen, sondern um eine Behandlung, die zu dir passt. Ich nehme mir Zeit, höre zu und erkläre dir verständlich, was möglich ist – und was nicht.</p>
@@ -966,7 +977,7 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
         <p>Warme Materialien, klare Formen und eine ruhige Atmosphäre. Das Kanzen Studio ist bewusst so gestaltet, dass du für einen Moment aus dem Alltag heraustreten kannst.</p>
         <a class="text-link" href="#termin">Besuch vereinbaren </a>
       </div>
-      <div><div class="studio__image photo photo--room" role="img" aria-label="Kanzen Behandlungsraum mit Holzlamellen und moderner Liege"></div><div class="studio__note">Kanzen Signature Beauty · Frankfurt</div></div>
+      <div><div class="studio__image photo photo--room"><img class="photo__img" src="/assets/studio-room.webp" alt="Kanzen Behandlungsraum in Frankfurt-Niederrad mit Holzlamellen und moderner Liege" width="1600" height="1067" loading="lazy" decoding="async"></div><div class="studio__note">Kanzen Signature Beauty · Frankfurt</div></div>
     </div>
   </section>
   <section class="section values">
