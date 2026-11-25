@@ -35,7 +35,7 @@
 <meta name="twitter:image" content="https://kanzen-aesthetics.de/assets/og-image.jpg">
 <link rel="preload" as="image" href="/assets/hero-behandlungsraum.webp" imagesrcset="/assets/hero-behandlungsraum-1600.webp 1600w, /assets/hero-behandlungsraum.webp 3072w" imagesizes="100vw" fetchpriority="high">
 <!-- Strukturierte Daten für Google (lokale Suche), Stand: Fragebogen 11/2026.
-     FAQPage muss inhaltlich den <details> unten entsprechen – bei FAQ-Änderungen hier mit anpassen. -->
+     FAQPage muss inhaltlich den <details> unten entsprechen (auch die unter "Weitere Fragen") – sonst Verstoß gegen Google-Richtlinien. -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -179,22 +179,6 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "Wie finde ich die richtige Behandlung?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Am Anfang steht immer ein persönliches Gespräch. Dabei besprechen wir deine Wünsche, deinen Hauttyp, deinen Hautzustand und welche Behandlung für dich infrage kommt."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Ist vor der ersten Behandlung eine Beratung möglich?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Ja – sie ist sogar notwendig. Gerade vor der ersten Behandlung ist es wichtig, offene Fragen und Erwartungen in Ruhe zu klären. Die Erstberatung ist kostenlos und unverbindlich."
-     }
-    },
-    {
-     "@type": "Question",
      "name": "Wie viele Sitzungen brauche ich bei der Laser-Haarentfernung?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -219,14 +203,6 @@
     },
     {
      "@type": "Question",
-     "name": "Was muss ich vor meinem Laser-Termin beachten?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Vor einer Laserbehandlung solltest du auf Sonnenbad, Solarium und Selbstbräuner verzichten und die Haare generell nicht wachsen oder epilieren – Rasieren ist erlaubt. Alle Hinweise für deine Behandlung bekommst du im Beratungsgespräch."
-     }
-    },
-    {
-     "@type": "Question",
      "name": "Wo finde ich eine Preisliste?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -235,18 +211,42 @@
     },
     {
      "@type": "Question",
-     "name": "Wie kann ich bezahlen?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Bar oder bequem per Zahlungslink (Beautinda): EC-Karte, Kreditkarte, Apple Pay / Google Pay, PayPal, Überweisung oder Ratenzahlung (z. B. Klarna)."
-     }
-    },
-    {
-     "@type": "Question",
      "name": "Wie kann ich einen Termin vereinbaren?",
      "acceptedAnswer": {
       "@type": "Answer",
       "text": "Am einfachsten per WhatsApp, Anruf oder Nachricht auf Instagram – die Kontaktdaten findest du direkt hier unten. Ich melde mich, um einen passenden Termin zu finden und die nächsten Schritte abzustimmen."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Wie finde ich die richtige Behandlung?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Am Anfang steht immer ein persönliches Gespräch. Dabei besprechen wir deine Wünsche, deinen Hauttyp, deinen Hautzustand und welche Behandlung für dich infrage kommt."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Ist vor der ersten Behandlung eine Beratung möglich?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Ja – sie ist sogar notwendig. Gerade vor der ersten Behandlung ist es wichtig, offene Fragen und Erwartungen in Ruhe zu klären. Die Erstberatung ist kostenlos und unverbindlich."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Was muss ich vor meinem Laser-Termin beachten?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Vor einer Laserbehandlung solltest du auf Sonnenbad, Solarium und Selbstbräuner verzichten und die Haare generell nicht wachsen oder epilieren – Rasieren ist erlaubt. Alle Hinweise für deine Behandlung bekommst du im Beratungsgespräch."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Wie kann ich bezahlen?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Bar oder bequem per Zahlungslink (Beautinda): EC-Karte, Kreditkarte, Apple Pay / Google Pay, PayPal, Überweisung oder Ratenzahlung (z. B. Klarna)."
      }
     }
    ]
@@ -964,6 +964,9 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
 /* H1: Suchbegriff als kleine Zeile über dem Markennamen */
 .hero__kicker{display:block;margin-bottom:14px;font:600 .72rem/1.5 "DM Sans",sans-serif;letter-spacing:.19em;text-transform:uppercase;color:rgba(245,239,233,.92);text-shadow:0 2px 12px rgba(43,10,16,.35)}
 .hero__kicker{white-space:nowrap}
+.faq-list:not(.is-expanded) .faq-more{display:none}
+.faq-toggle{margin-top:18px}
+@media(max-width:640px){.faq-toggle{width:100%}}
 /* Logo-Bildmarke (aus Logo-Datei freigestellt) */
 .logo{flex-direction:row;align-items:center;gap:12px}
 .logo__img{display:block;height:62px;width:auto}
@@ -1083,16 +1086,17 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
   <section class="section" id="kontakt">
     <div class="wrap faq">
       <div class="faq__intro"><h2>Fragen vor deinem Termin?</h2><p>Du bist dir noch nicht sicher, welche Behandlung passt? Das klären wir am besten in einem persönlichen Gespräch.</p></div>
-      <div class="faq-list">
-        <details><summary>Wie finde ich die richtige Behandlung?</summary><p>Am Anfang steht immer ein persönliches Gespräch. Dabei besprechen wir deine Wünsche, deinen Hauttyp, deinen Hautzustand und welche Behandlung für dich infrage kommt.</p></details>
-        <details><summary>Ist vor der ersten Behandlung eine Beratung möglich?</summary><p>Ja – sie ist sogar notwendig. Gerade vor der ersten Behandlung ist es wichtig, offene Fragen und Erwartungen in Ruhe zu klären. Die Erstberatung ist kostenlos und unverbindlich.</p></details>
+      <div class="faq-list" id="faq-list">
         <details id="faq-laser"><summary>Wie viele Sitzungen brauche ich bei der Laser-Haarentfernung?</summary><p>Haare wachsen in Phasen, und der Laser erreicht nur die gerade aktiven. Deshalb sind mehrere Sitzungen im Abstand von einigen Wochen üblich. Wie viele es bei dir sind, hängt von Haut, Haar und Körperzone ab – das besprechen wir vorab in Ruhe. Ich behandle mit dem MeDioStar-Diodenlaser von Asclepion.</p></details>
         <details id="faq-carbon"><summary>Was passiert bei einem Carbon Peel?</summary><p>Auf die gereinigte Haut wird eine feine Carbon-Maske aufgetragen und anschließend mit dem Laser abgetragen. Das Ziel: ein klarer und feiner wirkendes Hautbild. Danach kann die Haut kurz leicht gerötet sein – eine Ausfallzeit gibt es in der Regel nicht.</p></details>
         <details id="faq-needling"><summary>Wie läuft Microneedling ab?</summary><p>Mit sehr feinen Nadeln werden winzige Mikrokanäle in der Haut gesetzt. Sie sollen die hauteigene Erneuerung und die Kollagenbildung anregen und die Aufnahme von Wirkstoffen verbessern. Die Haut ist danach meist für ein bis zwei Tage gerötet. Welche Intensität und wie viele Termine sinnvoll sind, klären wir in der Beratung.</p></details>
-        <details><summary>Was muss ich vor meinem Laser-Termin beachten?</summary><p>Vor einer Laserbehandlung solltest du auf Sonnenbad, Solarium und Selbstbräuner verzichten und die Haare generell nicht wachsen oder epilieren – Rasieren ist erlaubt. Alle Hinweise für deine Behandlung bekommst du im Beratungsgespräch.</p></details>
         <details id="faq-preise"><summary>Wo finde ich eine Preisliste?</summary><p>Da jede Behandlung einen individuellen Plan braucht, gibt es keine Pauschalpreise. Die Kosten hängen von Zone, Fläche, Zeitaufwand und den benötigten Produkten ab – wir besprechen sie transparent im Beratungsgespräch. Pakete für mehrere Sitzungen und Gutscheine sind möglich.</p></details>
-        <details><summary>Wie kann ich bezahlen?</summary><p>Bar oder bequem per Zahlungslink (Beautinda): EC-Karte, Kreditkarte, Apple Pay / Google Pay, PayPal, Überweisung oder Ratenzahlung (z. B. Klarna).</p></details>
         <details><summary>Wie kann ich einen Termin vereinbaren?</summary><p>Am einfachsten per WhatsApp, Anruf oder Nachricht auf Instagram – die Kontaktdaten findest du direkt hier unten. Ich melde mich, um einen passenden Termin zu finden und die nächsten Schritte abzustimmen.</p></details>
+        <details class="faq-more"><summary>Wie finde ich die richtige Behandlung?</summary><p>Am Anfang steht immer ein persönliches Gespräch. Dabei besprechen wir deine Wünsche, deinen Hauttyp, deinen Hautzustand und welche Behandlung für dich infrage kommt.</p></details>
+        <details class="faq-more"><summary>Ist vor der ersten Behandlung eine Beratung möglich?</summary><p>Ja – sie ist sogar notwendig. Gerade vor der ersten Behandlung ist es wichtig, offene Fragen und Erwartungen in Ruhe zu klären. Die Erstberatung ist kostenlos und unverbindlich.</p></details>
+        <details class="faq-more"><summary>Was muss ich vor meinem Laser-Termin beachten?</summary><p>Vor einer Laserbehandlung solltest du auf Sonnenbad, Solarium und Selbstbräuner verzichten und die Haare generell nicht wachsen oder epilieren – Rasieren ist erlaubt. Alle Hinweise für deine Behandlung bekommst du im Beratungsgespräch.</p></details>
+        <details class="faq-more"><summary>Wie kann ich bezahlen?</summary><p>Bar oder bequem per Zahlungslink (Beautinda): EC-Karte, Kreditkarte, Apple Pay / Google Pay, PayPal, Überweisung oder Ratenzahlung (z. B. Klarna).</p></details>
+        <button type="button" class="reviews__toggle faq-toggle" id="faq-toggle" aria-expanded="false">Weitere Fragen (4)</button>
       </div>
     </div>
     <!-- KONTAKT: Daten im Skript unten unter CONTACT eintragen. Leere Felder werden automatisch ausgeblendet. -->
@@ -1167,6 +1171,9 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
   showcase.addEventListener('mouseleave',restartValueTimer);
   showValue(0);restartValueTimer();
 
+  // FAQ: weitere Fragen ein-/ausblenden
+  (function(){const l=document.getElementById('faq-list'),t=document.getElementById('faq-toggle');
+    t.addEventListener('click',()=>{const o=l.classList.toggle('is-expanded');t.setAttribute('aria-expanded',String(o));t.textContent=o?'Weniger Fragen':'Weitere Fragen (4)'})})();
   // "Mehr erfahren" -> passende FAQ-Antwort öffnen
   document.querySelectorAll('a[href^="#faq-"]').forEach(a=>a.addEventListener('click',()=>{const d=document.querySelector(a.hash);if(d)d.open=true}));
 
