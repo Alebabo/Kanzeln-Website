@@ -18,6 +18,10 @@ const page = `<!doctype html>
 <meta name="color-scheme" content="light dark">
 <meta name="robots" content="noindex">
 <title>Coming Soon</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/assets/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/assets/icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
 :root { color-scheme: light dark; }
 html, body { height: 100%; margin: 0; }
