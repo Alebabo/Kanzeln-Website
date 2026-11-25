@@ -995,14 +995,6 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
     <button class="burger" id="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
   </div>
 </header>
-<div class="rating-band" aria-label="Google-Bewertung">
-  <div class="wrap rating-band__inner">
-    <span class="rating-stars" aria-label="viereinhalb von fünf Sternen">★★★★<span style="display:inline-block;background:linear-gradient(90deg,#8a4f59 50%,#cfaea6 50%);color:transparent;background-clip:text">★</span></span>
-    <span class="rating-score">4,5 / 5</span>
-    <span class="rating-divider" aria-hidden="true"></span>
-    <span class="rating-copy">Google-Bewertung</span>
-  </div>
-</div>
 <main id="top">
   <section class="hero">
     <div class="hero__copy">
@@ -1186,13 +1178,9 @@ summary:after{color:var(--bordeaux);background:rgba(207,174,166,.25);border-colo
      placeholder:true entfernen, sobald echte Daten drinstehen. */
   const GOOGLE_PROFILE_URL = "https://g.page/r/CYTbQ-6yyDznEBM"; // Profil; Bewertungslink: https://g.page/r/CYTbQ-6yyDznEBM/review
   const GOOGLE_RATING = null;               // z. B. { score: 4.9, count: 37 }
-  const REVIEWS = [
-    { name:"Testkundin A", stars:5, date:"vor 2 Tagen",   placeholder:true, text:"Testtext (kurz): Hier steht später eine echte Rezension aus dem Google-Profil." },
-    { name:"Testkundin B", stars:5, date:"vor 1 Woche",   placeholder:true, text:"Testtext (mittel): Dieser Platzhalter hat ungefähr die Länge einer typischen Google-Rezension. Er dient nur dazu, Umbruch, Zeilenhöhe und Kürzung der Karte zu prüfen, und wird vor dem Launch ersetzt." },
-    { name:"Testkundin C", stars:4, date:"vor 3 Wochen",  placeholder:true, text:"Testtext (4 Sterne): Prüft die Darstellung einer Bewertung mit weniger als fünf Sternen." },
-    { name:"Testkunde D",  stars:5, date:"vor 1 Monat",   placeholder:true, text:"Testtext (lang): Ein bewusst langer Platzhalter, um zu sehen, wie die Karte mit ausführlichen Rezensionen umgeht. Im Abschnitt wird nach sechs Zeilen gekürzt, in der Hero-Karte schon nach einer Zeile. Längere echte Texte werden genauso behandelt, damit alle Karten gleich hoch bleiben und das Raster ruhig wirkt." },
-    { name:"Testkundin E", stars:5, date:"vor 2 Monaten", placeholder:true, text:"Testtext (kurz): Fünfte Karte, prüft das seitliche Wischen auf dem Handy." }
-  ];
+  // Format: { name:"Vorname N.", stars:5, date:"vor 2 Wochen", text:"…" }
+  // Leer = Rezensionsbereich und Hero-Karte bleiben ausgeblendet.
+  const REVIEWS = [];
   // Offizielles Google-G als Datei ablegen: public/assets/google-g.png (aus Googles Brand-Ressourcen).
   // Fehlt die Datei, wird nichts angezeigt.
   const G_LOGO='<img class="g-logo" src="/assets/google-g.png" alt="Google" width="18" height="18" onerror="this.remove()">';
